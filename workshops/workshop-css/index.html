@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrapper{ 
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1{
+            background-color: red;
+            max-width: 680px;
+        }
+
+        p{
+            background-color: blue;
+            max-width: 680px;
+        }
+        img{
+            background-color: green;
+            object-fit: contain;
+        }
+        .full-bleed{
+            width:100%;
+            height:50vh;
+        }
+        .wrapper :not(.full-bleed){
+            max-width: ;
+        }
+    </style>
+</head>
+<body class="wrapper">
+    <h1>h1</h1>
+    <p>p</p>
+    <img src="https://static.wikia.nocookie.net/frstarwars/images/5/5f/Yoda.png" alt="" class="full-bleed">
+    <p>p</p>
+</body>
+</html>
