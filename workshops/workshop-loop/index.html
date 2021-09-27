@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let firstVariable = parseInt(prompt("Veuillez saisir votre première valeur"));
+        let operator = prompt("Veuillez saisir votre opérateur");
+        let secondVariable = parseInt(prompt("Veuillez saisir votre seconde valeur"));
+
+        
+        switch(operator){
+            // je teste la valeur d'opérateur
+
+            case "+":
+                // je suis dans le CAS où l'utilisateur a saisi +. Je lui affiche donc la somme
+                console.log(firstVariable + secondVariable);
+                break;
+                case "-":
+                // je suis dans le CAS où l'utilisateur a saisi -. Je lui affiche donc la soustraction
+                console.log(firstVariable - secondVariable);
+                break;  
+                case "/":
+                // je suis dans le CAS où l'utilisateur a saisi /. Je lui affiche donc la division
+                console.log(firstVariable / secondVariable);
+                break;              
+                case "*":
+                // je suis dans le CAS où l'utilisateur a saisi *. Je lui affiche donc la multiplication
+                console.log(firstVariable * secondVariable);
+                break;
+                default:
+                    // l'utilisateur n'a pas saisi n'a pas saisi un opérateur valide. Je lui informe que sa saisie est invalide
+                    console.log("Invalid Operator");
+                    break;
+        }
+
+        
+
+        
+    </script>
+</body>
+</html>
