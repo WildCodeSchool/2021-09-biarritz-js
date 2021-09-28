@@ -20,4 +20,29 @@ const creeChaine =  (partie1 = '', partie2 = '', partie3 = '') => {
 student.denomination = creeChaine();
 //console.log(student);
 student.infos = creeChaine(student.sexe, student.age, student.ville);
-console.log(student);
+//console.log(console);
+
+
+const fruits = [
+{name:'pomme', couleur:'vert', sayHello: function(){
+    console.log(`hello je suis une  ${this.name}`);
+}},
+{name:'orange', couleur:'orange', sayHello: function(){
+    console.log(`hello je suis une  ${this.name}`);
+}},
+{name:'banane', couleur:'jaune', sayHello: function(){
+    console.log(`hello je suis une ${this.name}`);
+}},
+];
+
+let noms = '';
+let couleurs = '';
+
+for (let i = 0; i< fruits.length ; i++){
+    //noms += fruits[i].name + ' ';
+    //couleurs += ` ${fruits[i].couleur}`;
+    fruits[i].sayHello();
+    //console.log(`nom : ${fruits[i].name} - couleur:${fruits[i].couleur}`);
+}
+//console.log(noms);
+//console.log(couleurs);
