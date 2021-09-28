@@ -9,7 +9,7 @@
         .container{
             display:grid;
             grid-template-columns: repeat(4, 1fr);
-            grid-template-rows:100px repeat(4,1fr);
+            grid-template-rows:100px repeat(2,1fr) 50px 50px;
         }
         header{
             grid-column-start:1;
@@ -43,6 +43,7 @@
             grid-column-end:4;
             grid-row-start:2;
             grid-row-end:4;
+            height:400px;
         }
     </style>
 </head>
@@ -51,8 +52,8 @@
         <header>header</header>
         <nav>nav</nav>
         <div class="content">content</div>
-    <div class="ads">ads</div>
-    <footer>footer</footer>
+        <div class="ads">ads</div>
+        <footer>footer</footer>
     </div>
 </body>
 </html>
