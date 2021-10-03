@@ -1,0 +1,48 @@
+body,
+html {
+  font-family: sans-serif;
+}
+
+#button {
+  transition-duration: 0.3s;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+}
+
+#button:hover {
+  background-color: rgb(0, 0, 0);
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+#button:focus {
+  outline: 0;
+}
+
+#instrcutions-container {
+  border-top: 1px solid rgb(196, 196, 196);
+}
+
+#controls-container {
+  padding: 15px;
+}
+
+#dots-container {
+  position: relative;
+  border: 1px solid black;
+  height: 300px;
+  width: 400px;
+}
+
+#dots-container div {
+  width: 100px;
+  height: 100px;
+  background-color: 'red';
+}
+
+li {
+  margin-bottom: 10px;
+}
