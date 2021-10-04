@@ -7,7 +7,7 @@ class Vehicle {
     this.brand = brand;
   }
   getPropsString(){
-    return `name is ${this.name}, color is ${this.color}, brand is ${this.brand}`;
+    return `name is ${this.name}, color is ${this.color}, wheels : ${this.numberOfWheels}`;
   }
   logTypeAndProps(){
     console.log('Vehicle specs : ' + this.getPropsString());
