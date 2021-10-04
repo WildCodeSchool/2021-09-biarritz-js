@@ -1,4 +1,4 @@
-import Vehicule from "./Vehicle";
+import Vehicle from "./Vehicle";
 
 class Car {
   // TODO
