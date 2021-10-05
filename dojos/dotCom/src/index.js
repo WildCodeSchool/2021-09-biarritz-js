@@ -1,5 +1,5 @@
 import './styles.css';
-import Dot from './Dot';
+import Dot from './Dot.js';
 
 const dotsContainer = document.getElementById('dots-container');
 const dot1 = new Dot(dotsContainer, 'red', 100);
