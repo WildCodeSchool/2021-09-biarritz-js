@@ -1,36 +1,43 @@
-import logo from './logo.svg';
 import './App.css';
-import {Component} from 'react';
 
-class Hello extends Component {
-  render(){
-    return(
-      <h2>Hello world en classe !</h2>
-    );
-  }
+const monSimpson = [{
+  firstName:"Bart",
+  lastName:"Simpson",
+  image:"bart-simpson.png"
+},
+{
+  firstName:"Maggie",
+  lastName:"Simpson",
+  image:"maggie-simpson.png"
+},
+{
+  firstName:"Lisa",
+  lastName:"Simpson",
+  image:"lisa-simpson.jpg"
+},
+{
+  firstName:"Marge",
+  lastName:"Simpson",
+  image:"marge-simpson.jpg"
+}]
+
+const Avatar = ({firstName, lastName, image}) => {
+  return(
+    <div className = "container">
+      <h2>{lastName.toUpperCase()} {firstName}</h2>
+      <img src={`/assets/` + image} alt = "bart" width="300px" height="300px"/>      
+    </div>
+  );  
 }
-
 
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-          It works.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <Hello />
+      {monSimpson.map((simpson) => (
+          <Avatar {...simpson}/>
+      ))
+      }
     </div>
   );
 }
