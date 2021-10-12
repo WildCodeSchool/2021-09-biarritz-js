@@ -1,0 +1,11 @@
+.app {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  margin-top: 50px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
