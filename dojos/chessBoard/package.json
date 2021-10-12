@@ -1,0 +1,22 @@
+{
+  "name": "chessboard",
+  "version": "1.0.0",
+  "description": "In order to represent a chessboard in a program, write a chessboard function that will return an array of arrays containing the squares coordinates.",
+  "main": "chessboard.js",
+  "scripts": {
+    "test": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WildCodeSchool/dojo-js-chessboard.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WildCodeSchool/dojo-js-chessboard/issues"
+  },
+  "homepage": "https://github.com/WildCodeSchool/dojo-js-chessboard#readme",
+  "devDependencies": {
+    "jest": "^24.9.0"
+  }
+}
