@@ -8,7 +8,7 @@ Write a Vehicle class with :
 
 <!-- step two -->
 
-Then, write the Motorcyle and Car classes that inherit from Vehicle.
+Then, write the Motorcycle and Car classes that inherit from Vehicle.
 
 <!-- step three -->
 
