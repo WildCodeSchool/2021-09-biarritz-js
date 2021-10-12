@@ -1,4 +1,5 @@
 workshops/workshop-node/node_modules/
 workshops/workshop-node/package-lock.json
+workshops/workshop-react/node_modules/
 dojos/chessBoard/node_modules/
 dojos/chessBoard/package-lock.json
