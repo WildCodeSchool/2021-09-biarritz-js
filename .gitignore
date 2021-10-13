@@ -6,3 +6,5 @@ dojos/chessBoard/node_modules/
 dojos/chessBoard/package-lock.json
 workshops/workshop-findhome-react/node_modules/
 workshops/workshop-findhome-react/package-lock.json
+demos/react-usestate/node_modules/
+demos/react-usestate/package-lock.json
