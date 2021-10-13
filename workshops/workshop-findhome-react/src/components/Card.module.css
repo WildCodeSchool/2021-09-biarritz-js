@@ -1,0 +1,42 @@
+.card {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #73a5c6;
+  width: 300px;
+  margin: 30px 30px;
+  border-radius: 20px;
+}
+
+.card__image {
+  border-radius: 50%;
+  width: 80%;
+  height: 50%;
+}
+
+.card__title {
+  font-size: 18px;
+}
+
+.card__price {
+  font-size: 14px;
+  color: white;
+  font-weight: 600;
+}
+
+.card__button {
+  width: 90px;
+  height: 30px;
+  background-color: white;
+  color: #73a5c6;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.2) 5px 0px 3px;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.card__button:hover {
+  transform: scale(1.2);
+}
