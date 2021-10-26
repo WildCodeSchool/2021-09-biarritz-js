@@ -4,6 +4,8 @@ workshops/workshop-react-props/node_modules/
 workshops/workshop-react-props/package-lock.json
 dojos/chessBoard/node_modules/
 dojos/chessBoard/package-lock.json
+dojos/product-cart/node_modules/
+dojos/product-cart/package-lock.json
 workshops/workshop-findhome-react/node_modules/
 workshops/workshop-findhome-react/package-lock.json
 workshops/workshop-react-routes/node_modules/
