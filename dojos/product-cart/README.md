@@ -41,7 +41,7 @@ En dessous du tableau, affichez le montant total du panier, qui se calcule en fa
 
 Creez un formulaire pour ajouter un produit : 
 - Ce dernier contiendra deux champs : 'Nom' et 'Prix', ainsi qu'un bouton 'Ajouter'.
-- Dès que l'on souhaite ajouter un produit, il faut s'assurer que le nom est bien présent et que la quantité a une valeur cohérente  (pensez aux contraintes d'input HTML5 !).
+- Dès que l'on souhaite ajouter un produit, il faut s'assurer que le nom est bien présent et que le prix a une valeur cohérente  (pensez aux contraintes d'input HTML5 !).
 - Un nouveau produit dans la liste aura une quantité de 1.
 - Un nouveau produit devra posséder un identifiant (`id`) généré aléatoirement au moment de la création. Vous pouvez utiliser [ceci](https://www.npmjs.com/package/uuid).
 

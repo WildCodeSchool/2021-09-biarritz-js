@@ -7,6 +7,8 @@ dojos/chessBoard/package-lock.json
 dojos/product-cart/node_modules/
 dojos/product-cart/package-lock.json
 workshops/workshop-findhome-react/node_modules/
+workshops/workshop-findhome-react/.cache/
+workshops/workshop-findhome-react/dist/
 workshops/workshop-findhome-react/package-lock.json
 workshops/workshop-react-routes/node_modules/
 workshops/workshop-react-routes/package-lock.json
