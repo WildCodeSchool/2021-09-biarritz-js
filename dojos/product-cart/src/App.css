@@ -1,0 +1,42 @@
+.App h1,
+.App p {
+  text-align: center;
+}
+
+.App table {
+  margin: auto;
+  border-collapse: collapse;
+}
+
+.App table td,
+.App table th {
+  border: 1px solid grey;
+  padding: 10px;
+}
+
+.App form {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.App form .field {
+  margin: 10px;
+}
+
+.App form .field input {
+  margin-left: 10px;
+  padding: 5px;
+}
+
+.App form h2 {
+  text-align: center;
+}
+
+.App form h2 {
+  text-align: center;
+}
+
+.App button,
+.App input[type='submit'] {
+  cursor: pointer;
+}
