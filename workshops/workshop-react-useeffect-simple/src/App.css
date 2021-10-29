@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+  width:400px;
+  margin:50px;
+}
+.container {
+  display:flex;
+  justify-content: space-around;
+}
+
+.total {
+  font-weight: 600;
+  font-size:16px;
+  padding-top:10px;
+}

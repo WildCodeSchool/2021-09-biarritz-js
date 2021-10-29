@@ -14,6 +14,8 @@ workshops/workshop-react-routes/node_modules/
 workshops/workshop-react-routes/package-lock.json
 workshops/workshop-react-useeffect/node_modules/
 workshops/workshop-react-useeffect/package-lock.json
+workshops/workshop-react-useeffect-simple/node_modules/
+workshops/workshop-react-useeffect-simple/package-lock.json
 demos/react-usestate/node_modules/
 demos/react-usestate/package-lock.json
 demos/react-giphy/node_modules/
