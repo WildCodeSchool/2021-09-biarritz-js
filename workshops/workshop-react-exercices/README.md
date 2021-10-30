@@ -57,3 +57,15 @@ Remarque : Tu vas devoir utiliser des conditions pour gèrer le cas où contains
 ****************************************************************************************
 C'est le moment de vérifier dans ta console qu'aucune erreur ou aucun warning ne traine.
 ****************************************************************************************
+
+21- Nous allons créer un useEffect pour notre composant App. Positionne le au début de ton composant, en dessous des variables d'état et fais un console.log('Appel API') à l'intérieur. N'oublie pas de préciser en deuxième paramètre du useEffect un tableau de dépendances vide, afin que ce code ne soit lancé qu'une fois, à la naissance du composant.
+22- Installe et importe axios à ton projet. Rajoute également une variable d'état "data", qui va être initialisé avec un tableau vide.
+23- Dans le useEffect, fais ton appel API, en appelant la fonction getApiCall faite à l'étape 20. 
+24- Récupère la réponse, puis la data et affecte le à la variable d'état "data". Gère également les potentielles erreurs en utilisant le .catch. Observe bien le résultat en fonction des différents filtres.
+25- Modifie le code du composant App pour afficher non pas le contenu du fichier data.js mais le contenu de la variable d'état "data". Attention, en fonction du filtre "avec chute", les objets renvoyés ne seront pas identiques. Il te faudra donc gèrer ce cas lors du .map. Vérifie que les blagues affichées soient bien modifiées en fonction des filtres.
+
+****************************************************************************************
+C'est le moment de vérifier dans ta console qu'aucune erreur ou aucun warning ne traine.
+****************************************************************************************
+
+Félicitations ! Nous avons utilisé toutes les notions annoncées au début du workshop et tu as réussi seul.e à créer une application dynamique en React ! N'hésite pas à refaire ce workshop jusqu'à ce que chaque étape te semble comprise et acquise.
