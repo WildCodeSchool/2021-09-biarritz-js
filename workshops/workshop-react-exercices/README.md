@@ -66,7 +66,7 @@ Remarque : Attention, le json envoyé n'est pas le même quand il y a une répon
 25- Modifie le code du composant App pour afficher non pas le contenu du fichier data.js mais le contenu de la variable d'état "jokes". Attention, en fonction du filtre "avec chute", les objets renvoyés ne seront pas identiques. Il te faudra donc gèrer ce cas lors du .map. Vérifie que les blagues affichées soient bien modifiées en fonction des filtres. N'oublie pas de supprimer l'import de data qui devient alors inutile.
 
 ****************************************************************************************
-C'est le moment de vérifier dans ta console qu'aucune erreur ou aucun warning ne traine.
+C'est le moment de vérifier dans ta console qu'aucune erreur ou aucun warning ne traine. 
 ****************************************************************************************
 
 Félicitations ! Nous avons utilisé toutes les notions annoncées au début du workshop et tu as réussi seul.e à créer une application dynamique en React ! N'hésite pas à refaire ce workshop jusqu'à ce que chaque étape te semble comprise et acquise.
