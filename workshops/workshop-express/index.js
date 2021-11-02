@@ -52,7 +52,7 @@ app.get('/icecreams', (req,res) => {
     }
 
     const icecreamsLimit = icecreamsColor.slice(0,limit);
-    if (icecreamsLimit){
+    if (icecreamsLimit.length===0){
         res.send(icecreamsLimit);
     }
     else{
