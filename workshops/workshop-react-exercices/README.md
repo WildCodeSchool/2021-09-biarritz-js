@@ -13,11 +13,11 @@ Toutes les étapes vont être détaillées ci dessous. Suis les à la lettre et 
 
 Tu trouveras pour t'aider un dossier screens, qui contiendra des screenshots du résultat à différentes étapes. Elles te permettront de savoir si ton programme se rapproche suffisamment des consignes demandées.
 
-1- Crée le dossier components au bon endroit (ceci doit devenir un réflexe dans tout projet React)
-2- Dans le dossier components, crée le composant Joke.jsx et n'oublie pas le fichier css associé
-3- Dans le component Joke, crée la structure du composant et exporte le. Importe le ensuite depuis App.
-4- Le component Joke n'est rien de plus qu'une div contenant un texte. Crée cette div, donne lui comme texte "Blague" et appelle ce composant dans App pour vérifier que "Blague" s'affiche bien .
-5- Rajoute une classe à cette div. N'oublie pas d'importer le fichier css. Regarde le screenshot 5.jpg situé dans le dossier screens pour savoir quels styles appliquer à ta classe.
+1- Crée le dossier components au bon endroit (ceci doit devenir un réflexe dans tout projet React). <br/>
+2- Dans le dossier components, crée le composant Joke.jsx et n'oublie pas le fichier css associé. <br/>
+3- Dans le component Joke, crée la structure du composant et exporte le. Importe le ensuite depuis App. <br/>
+4- Le component Joke n'est rien de plus qu'une div contenant un texte. Crée cette div, donne lui comme texte "Blague" et appelle ce composant dans App pour vérifier que "Blague" s'affiche bien . <br/>
+5- Rajoute une classe à cette div. N'oublie pas d'importer le fichier css. Regarde le screenshot 5.jpg situé dans le dossier screens pour savoir quels styles appliquer à ta classe. <br/>
 
 ****************************************************************************************
 C'est le moment de vérifier dans ta console qu'aucune erreur ou aucun warning ne traine.
