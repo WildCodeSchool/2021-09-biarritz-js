@@ -1,13 +1,12 @@
-**##DOJO SQL BASICS##**
+**DOJO SQL BASICS**
 
 Le but de ce dojo est de vous familiariser avec les commandes de bases en SQL.
 
 **INSTALLATION**
 Créez la base de données *dojo_sql_basics*.
 Importez (ou copiez/collez) le fichier database.sql dans la base de données nouvellement créée.
-[Fichier SQL] (./database.sql)
 
-**VUE DES TABLES**
+**VUE DES TABLES**<br/>
 ![Drinks](./Drinks.png)<br/>
 ![Ingredients](./Ingredients.png)
 
