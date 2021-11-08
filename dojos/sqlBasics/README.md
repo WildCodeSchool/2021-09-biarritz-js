@@ -3,7 +3,9 @@
 Le but de ce dojo est de vous familiariser avec les commandes de bases en SQL.
 
 **INSTALLATION**
+
 Créez la base de données *dojo_sql_basics*.
+
 Importez (ou copiez/collez) le fichier database.sql dans la base de données nouvellement créée.
 
 **VUE DES TABLES**<br/>
@@ -21,4 +23,4 @@ Importez (ou copiez/collez) le fichier database.sql dans la base de données nou
 * 8: L'ingrédient principal de la boisson 'Irish Coffee' est le whisky. Rajoutez l'ingrédient et modifiez l'enregistrement concerné pour lui rajouter cette information.
 * 9: Certaines boissons n'ont pas de prix. Modifiez les pour les mettre à 5. **Attention**, vous devez tous les modifier en une seule requête.
 * 10: Rajoutez à la table Drinks le cocktail suivant : Le 'Pélican' au prix de 4, Alcoolisé et dont l'Ingrédient principal est le Pastis
-* 11: Un ingrédient n'est pas utilisé. Supprimez le. **Attention**, vous devez le supprimer en une seule requête (donc en faisant une requête qui dit : Supprime de la table des ingrédients l'ingrédient qui n'est pas l'ingrédient principal dans la table des boissons).
+* 11: Un ingrédient n'est pas utilisé. Supprimez le. **Attention**, vous devez le supprimer en une seule requête (donc en faisant une requête qui dit : Supprimez de la table des ingrédients l'ingrédient qui n'est pas l'ingrédient principal dans la table des boissons).
