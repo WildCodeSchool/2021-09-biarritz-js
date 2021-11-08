@@ -1,19 +1,17 @@
-##DOJO SQL BASICS
+**##DOJO SQL BASICS##**
 
 Le but de ce dojo est de vous familiariser avec les commandes de bases en SQL.
 
-##INSTALLATION
+**INSTALLATION**
 Créez la base de données *dojo_sql_basics*.
 Importez (ou copiez/collez) le fichier database.sql dans la base de données nouvellement créée.
 [Fichier SQL] (./database.sql)
 
-##VUE DES TABLES
-###Drinks
-![Drinks](./Drinks.png)
-###Ingredients
+**VUE DES TABLES**
+![Drinks](./Drinks.png)<br/>
 ![Ingredients](./Ingredients.png)
 
-##REQUETES SQL
+**REQUETES SQL**
 * 1: Donnez le nom et le prix de chaque boisson sans alcool
 * 2: Triez les boissons par présence d'alcool, puis par ordre décroissant de prix
 * 3: Donnez les 3 boissons contenant de l'alcool les plus chères
