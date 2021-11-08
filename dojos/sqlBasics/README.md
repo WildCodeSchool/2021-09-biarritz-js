@@ -8,6 +8,8 @@ Créez la base de données *dojo_sql_basics*.
 
 Importez (ou copiez/collez) le fichier database.sql dans la base de données nouvellement créée.
 
+ [database.sql](./database.sql). 
+
 **VUE DES TABLES**<br/>
 ![Drinks](./Drinks.png)<br/>
 ![Ingredients](./Ingredients.png)
