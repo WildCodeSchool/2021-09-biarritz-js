@@ -1,4 +1,4 @@
-let projectsName = ['Auri-Artwoork', 'Biarritz tourisme', 'La belle miche', 'Shoe Sheperd', 'Wild resto'];
+let projectsName = ['Wild Heroes', 'Dobby and Friends', 'Blind Crash Test', 'World Wild Quizz'];
 const numberOfProjects = projectsName.length;
 let orderMessage = `L'ordre de passage sera : \n`;
 

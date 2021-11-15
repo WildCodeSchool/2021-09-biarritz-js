@@ -12,6 +12,8 @@ workshops/workshop-findhome-react/dist/
 workshops/workshop-findhome-react/package-lock.json
 workshops/workshop-react-routes/node_modules/
 workshops/workshop-react-routes/package-lock.json
+workshops/workshop-express/node_modules/
+workshops/workshop-express/package-lock.json
 workshops/workshop-react-useeffect/node_modules/
 workshops/workshop-react-useeffect/package-lock.json
 workshops/workshop-react-useeffect-simple/node_modules/
@@ -22,5 +24,8 @@ demos/react-usestate/node_modules/
 demos/react-usestate/package-lock.json
 demos/react-giphy/node_modules/
 demos/react-giphy/package-lock.json
+demos/fullstack-search/node_modules/
+demos/fullstack-search/package-lock.json
+demos/fullstack-search/.env
 checkpoints/checkpoint1/node_modules/
 checkpoints/checkpoint1/package-lock.json
