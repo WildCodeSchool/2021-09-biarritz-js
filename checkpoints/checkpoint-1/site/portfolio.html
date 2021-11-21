@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/portfolio.css" />
+    <title>Checkpoint 1 Portfolio</title>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar">
+        <img src="image/logo.svg" class="logo" alt="my-logo" />
+        <div class="menu">
+          <a href="home.html">Instructions</a>
+          <a href="portfolio.html">Portfolio</a>
+        </div>
+      </nav>
+    </header>
+    <main class="container">
+      <section class="banner">
+        <img src="image/avatar.png" alt="avatar" class="avatar" />
+        <h1>FullStack Developer</h1>
+        <p>I code beautifully simple things, and love what I do</p>
+      </section>
+
+      <section class="introduction">
+        <figure class="desktop">
+          <img src="image/desktop.svg" alt="desktop" />
+        </figure>
+      </section>
+
+      <!-- Second banner with description of your name and your presentation -->
+      <section class="presentation">
+        <div class="description pink-bg">
+          <h2>Hi, I’m <span id="name">Matt</span>. Nice to meet you.</h2>
+          <p>
+            Since the beginning of my journey as a freelance developer nearly 10
+            years ago, I've done remote work for agencies, consulted for
+            startups, and collaborated with talented people to create digital
+            products for both business and consumer use. I'm quietly confident,
+            naturally curious, and perpetually working on improving my chops one
+            problem at a time.
+          </p>
+          <button class="modify-btn">Modify text and color</button>
+        </div>
+
+        <!-- Bloc of list of skill front end and back end -->
+        <div class="skills">
+          <div class="column">
+            <div class="skill">
+              <img src="image/frontend.svg" alt="frontend" />
+              <h2>Back-end Developer</h2>
+              <p>I like to code things from scratch.</p>
+              <h2 class="pink-text">Languages I speak:</h2>
+              <p>MySql</p>
+              <h2 class="pink-text">Dev Tools:</h2>
+              <ul id="dev-tools-back-list">
+                <li>VScode</li>
+              </ul>
+              <form id="dev-tools-back-form">
+                <input
+                  id="dev-tools-back-input"
+                  placeholder="Enter your new skill"
+                />
+                <button type="submit">Add</button>
+              </form>
+            </div>
+          </div>
+          <div class="column">
+            <div class="skill">
+              <img src="image/frontend.svg" alt="frontend" />
+              <h2>Front-end Developer</h2>
+              <p>I love bringing ideas to life.</p>
+              <h2 class="pink-text">Languages I speak:</h2>
+              <p>HTML, CSS</p>
+              <h2 class="pink-text">Dev Tools:</h2>
+              <ul id="front-dev-tools">
+                <li>You can modify</li>
+                <li>You can modify</li>
+                <li>You can modify</li>
+              </ul>
+              <button id="modify-front-skills-btn">Modify</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <h2>My Recent Work</h2>
+      <p>
+        Here are a few projects I've worked on recently. Want to see more? Email
+        me.
+      </p>
+
+      <!-- Third banner with the list of all your projects -->
+      <section class="projects">
+        <div class="box">
+          <img
+            src="https://mattfarley.ca/img/logos/kybercore.svg"
+            alt="logo-entreprise"
+          />
+          <p>
+            Next level plug and play chassis systems for custom do-it-yourself
+            lightsaber builds.
+          </p>
+          <a class="disabled">In development</a>
+        </div>
+        <div class="box">
+          <img
+            src="https://mattfarley.ca/img/logos/basin.svg"
+            alt="logo-entreprise"
+          />
+          <p>
+            A powerful, easy-to-configure form backend for designers and
+            developers. No coding required.
+          </p>
+          <a href="www.usebasin.com">www.usebasin.com</a>
+        </div>
+        <div class="box">
+          <img
+            src="https://mattfarley.ca/img/logos/ylbuilders.svg"
+            alt="logo-entreprise"
+          />
+          <p>
+            Beautifully simple websites for independent distributors of Young
+            Living Essential Oils.
+          </p>
+          <a href="www.ylbuilders.com">www.ylbuilders.com</a>
+        </div>
+        <div class="box">
+          <img
+            src="https://mattfarley.ca/img/logos/dovetail.svg"
+            alt="logo-entreprise"
+          />
+          <p>
+            A space and member management solution for coworking communities
+            both big and small.
+          </p>
+          <a class="disabled">Shutdown in 2017</a>
+        </div>
+      </section>
+    </main>
+    <footer class="presentation">
+      <div class="description pink-bg">
+        <img src="image/logo-white.svg" alt="logo-white" />
+        <h2>Living, learning, & leveling up one day at a time.</h2>
+      </div>
+    </footer>
+    <script src="js/portfolio.js"></script>
+  </body>
+</html>

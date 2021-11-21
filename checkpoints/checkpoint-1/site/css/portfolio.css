@@ -1,0 +1,174 @@
+.pink-bg {
+  background-color: pink;
+}
+
+.pink-text {
+  color: pink;
+}
+
+.purple-text {
+  color: #750ff7;
+}
+
+.description {
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px;
+}
+
+.description p {
+  width: 60%;
+  text-align: center;
+}
+
+.desktop {
+  margin: 80px 0 -5px 0;
+}
+
+.skills {
+  margin-top: -30px;
+  border-radius: 12px;
+  padding: 0 10%;
+}
+
+.column {
+  border-left: 1px solid #e6ecf8;
+  border-right: 1px solid #e6ecf8;
+  border-bottom: 1px solid #e6ecf8;
+  background-color: #ffffff;
+  padding: 60px 35px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 5px 5px 0 rgba(233, 240, 243, 0.5);
+}
+
+.column:first-child {
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+}
+
+.column:last-child {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.box {
+  width: 25%;
+  padding: 30px;
+  border: 1px solid #e6ecf8;
+  margin: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 5px 0 rgba(233, 240, 243, 0.5);
+}
+
+img {
+  max-width: 100%;
+}
+
+.projects a {
+  color: #750ff7;
+}
+
+p {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+h1,
+h2,
+p {
+  text-align: center;
+}
+
+.projects p {
+  text-align: left;
+}
+
+input {
+  padding: 9px;
+}
+
+button {
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  border: 0;
+  border-radius: 3px;
+  border: 1px solid white;
+  color: white;
+  background-color: #750ff7;
+}
+
+.modify-btn {
+  background-color: transparent;
+}
+
+/* CODE HERE */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.introduction {
+  display: flex;
+  justify-content: center;
+}
+
+.disabled {
+  opacity: 0.5;
+}
+
+.projects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.box {
+  width: 80%;
+}
+
+/* mobile */
+@media screen and (max-width: 700px) {
+  .desktop {
+    display: none;
+  }
+  .skills {
+    flex-direction: column-reverse;
+  }
+}
+
+/* desktop */
+@media screen and (min-width: 700px) {
+  .skills {
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+  }
+
+  .column {
+    width: 40%;
+  }
+
+  .projects {
+    display: flex;
+    justify-content: center;
+  }
+
+  .box {
+    width: 25%;
+  }
+}
