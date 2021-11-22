@@ -31,5 +31,5 @@ demos/react-giphy/package-lock.json
 demos/fullstack-search/node_modules/
 demos/fullstack-search/package-lock.json
 demos/fullstack-search/.env
-checkpoints/checkpoint1/node_modules/
-checkpoints/checkpoint1/package-lock.json
+checkpoints/checkpoint-1/node_modules/
+checkpoints/checkpoint-1/package-lock.json
