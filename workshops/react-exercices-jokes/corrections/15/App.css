@@ -1,0 +1,41 @@
+.App {
+  position:absolute;
+  top:50px;
+  padding-top:20px;
+  text-align: center;
+  width:100%;
+  display:flex;
+  flex-direction: column;
+}
+
+.filtres{
+  position:fixed;
+  background-color:#ccc;
+  border-radius:5px;
+  padding:10px;
+  top:0;
+  width:100%;
+  display:flex;
+  justify-content: space-around;
+}
+
+.filtre__input{
+  display:flex;
+  padding:10px;
+  align-items:center;
+}
+
+.filtre__label{
+  font-size:14px;
+  color:purple;
+  font-weight: 600;
+  padding-right:10px;
+}
+
+.filtre__input__text--small{
+  width:50px;
+}
+
+.filtre__input__text--large{
+  width:300px;
+}
