@@ -1,0 +1,34 @@
+.App {
+  text-align: center;
+}
+
+h2{
+  text-align: center;
+  font-weight: 500;
+}
+
+.house__link{
+  list-style: none;
+  cursor:pointer;
+  height:40px;
+  width:200px;
+  border-radius: 3px;
+  border:1px solid black;
+  background-color: darkgrey;
+  color:white;
+  padding:20px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.houses{
+  display: flex;
+  margin:0;
+  padding:0;
+  flex-wrap:wrap;
+}
+
+a, a:visited, a:active{
+  text-decoration: none;
+}

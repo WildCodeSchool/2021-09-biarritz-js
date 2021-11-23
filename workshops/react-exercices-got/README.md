@@ -27,6 +27,6 @@ et son nom apparait en gras et centré.
 ****************************************************************************************
 
 
-7- Plus dur ! Tu vas décaler le filtre sur les personnages et l'appel vers le composant QuoteList.jsx dans un composant appelé House. Vérifie qu'à l'affichage, tout se déroule comme à l'étape 6.
+7- Plus dur ! Tu vas décaler le menu déroulant sur les personnages et l'appel vers le composant QuoteList.jsx dans un composant appelé House. Vérifie qu'à l'affichage, tout se déroule comme à l'étape 6.
 8- Ajoute désormais un composant Header, qui va contenir une liste de liens renvoyant chacun vers une maison de l'univers Game of Thrones. Pour savoir quoi mettre dans les liens, cherche dans la documentation de l'API la partie "List of houses with their members". Tu afficheras le "name" et tu conserveras la valeur "slug" pour l'utiliser plus tard. Forcément, le composant Header sera affiché dans App.
 9- Quand l'utilisateur clique sur un lien d'une maison dans le header, le menu déroulant contenant les personnages doit se rafraichir et n'afficher que les personnages appartenant à cette maison. Aller voir la partie "Get house's details" dans la documentation de l'API. Il faudra donc rajouter un lien dans le Header permettant de voir tous les personnages.
