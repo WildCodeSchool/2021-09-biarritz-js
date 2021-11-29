@@ -32,6 +32,8 @@ GET :id => récupère toutes les informations pour un id donné
 POST => insère en base un enregistrement
 DELETE :id => supprime l'enregistrement ayant l'id donné
 
+Insère plein de données en base pour voir si tes routes marchent (cela te servira également à vérifier que ton front affiche bien les bonnes données).
+
 ***************************
 FRONT
 ***************************
@@ -59,3 +61,5 @@ BONUS
 Dans le composant Author, tu afficheras pour chaque auteur le nombre de livres qu'il a écrits.
 Dans le composant Edition, tu afficheras le nombre de livres édités.
 Dans le composant AuthorDetails, la nationalité de l'auteur sera affichée grace à un petit drapeau.
+Dans chacun des composants, ajoute un bouton pour pouvoir supprimer les enregistrements. Attention, on ne doit pas pouvoir supprimer des auteurs ou des maisons d'édition associés à des livres !
+Dans chacun des composants, permet l'ajout d'enregistrements.
