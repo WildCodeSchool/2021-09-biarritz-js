@@ -1,0 +1,75 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.game-details-div {
+  height: 85vh;
+  box-sizing: border-box;
+}
+
+.game-details {
+  box-sizing: border-box;
+}
+
+.game-details h1 {
+  margin: 2vh 0;
+  color: black;
+}
+
+.return {
+  margin: 0 auto;
+  width: 100px;
+  border: solid 1px black;
+  background-color: white;
+  border-radius: 5px;
+  padding: 10px;
+  text-transform: uppercase;
+  transition: transform 0.3s;
+  position: relative;
+  top: 1vh;
+}
+
+.return:hover {
+  transform: scale(1.05);
+  color: white;
+  background-color: black;
+  font-weight: bold;
+}
+
+.video {
+  margin: 1vh auto 5vh auto;
+  box-shadow: 8px 8px 10px black;
+  width: 75vw;
+  height: 40vh;
+}
+
+.screenshots {
+  height: 10vh;
+  width: 80vw;
+  text-align: center;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+}
+
+.screenshots li {
+  transition: transform 0.3s;
+}
+
+.screenshots li:hover {
+  transform: scale(1.5);
+}
+
+.screenshots li img {
+  width: 10vw;
+  height: 10vh;
+  border-radius: 5px;
+}
+
+.screenshots li img:hover {
+  border-radius: 10px;
+  cursor: none;
+}

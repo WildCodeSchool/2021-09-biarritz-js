@@ -24,21 +24,27 @@ const GameList = () => {
   };
 
   return (
-    <ul>
+    <div className="gamelist-div">
       {/* au clic sur le bouton, inverse la valeur de filtered */}
-      <button onClick={() => setFiltered(!filtered)}>
+      <button id="rating-button" onClick={() => setFiltered(!filtered)}>
         {!filtered
           ? "Cliquez pour avoir les bons jeux"
           : "Cliquez pour avoir tous les jeux"}
       </button>
-      {gameList &&
-        gameList
-          .filter((game) => game.rating > 4.5 || !filtered)
-          .map((game) => (
-            //   Passe l'intégralité de l'objet game et passe aussi la fonction permettant de supprimer
-            <Game key={game.id} {...game} removeGame={(id) => removeGame(id)} />
-          ))}
-    </ul>
+      <div className="game-list">
+        {gameList &&
+          gameList
+            .filter((game) => game.rating > 4.5 || !filtered)
+            .map((game) => (
+              //   Passe l'intégralité de l'objet game et passe aussi la fonction permettant de supprimer
+              <Game
+                key={game.id}
+                {...game}
+                removeGame={(id) => removeGame(id)}
+              />
+            ))}
+      </div>
+    </div>
   );
 };
 
