@@ -1,0 +1,15 @@
+.theme{
+    width:80%;
+    height:calc((100vh - 40px)/3);
+    border-radius:20px;
+    border:2px black solid;
+    object-fit:cover;
+    object-position:top;
+    cursor:pointer;
+    margin-bottom:20px;
+    box-shadow: black 2px 5px;
+  }
+  
+  .theme:last-of-type{
+    margin-bottom:0px;
+  }

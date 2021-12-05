@@ -1,0 +1,9 @@
+.character_img{
+    height:200px;
+    width:200px;
+    border-radius:50%;
+    border:1px black solid;
+    box-shadow: black 2px 2px;
+    margin : 10px;
+    object-fit:contain;
+}
