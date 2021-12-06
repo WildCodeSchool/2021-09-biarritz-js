@@ -1,8 +1,8 @@
-import Theme from './Theme';
-import { Link } from 'react-router-dom';
-import bcs from '../images/better-call-saul.jpeg';
-import bb from '../images/breaking-bad.jpg';
-import random from '../images/random.jpg';
+import Theme from "./Theme";
+import { Link } from "react-router-dom";
+import bcs from "../images/better-call-saul.jpeg";
+import bb from "../images/breaking-bad.jpg";
+import random from "../images/random.jpg";
 
 const Home = () => {
   return (
@@ -14,7 +14,7 @@ const Home = () => {
         <Theme image={bcs} name="Better Call Saul" />
       </Link>
       <Link to="/character/random">
-        <Theme image={random} name="Random" />
+        <Theme image={random} name="Rando" />
       </Link>
     </>
   );

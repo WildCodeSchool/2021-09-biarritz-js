@@ -1,13 +1,12 @@
-import './App.css';
-import { HashRouter as BrowserRouter, Routes, Route } from 'react-router-dom';
-import CharacterList from './components/CharacterList';
-import Home from './components/Home';
-import Character from './components/Character';
-import { useEffect } from 'react';
+import "./App.css";
+import { HashRouter as BrowserRouter, Routes, Route } from "react-router-dom";
+import CharacterList from "./components/CharacterList";
+import Home from "./components/Home";
+import Character from "./components/Character";
 
 function App() {
   useEffect(() => {
-    document.title = 'Exercices sur les erreurs';
+    document.title = "Exercices sur les erreurs";
   }, []);
 
   return (
@@ -18,14 +17,14 @@ function App() {
           <Route
             path="/breakingbad"
             exact
-            element={<CharacterList theme="breakingbad" />}
+            element={<CharacterList theme="breakingba" />}
           />
           <Route
             path="/bettercallsaul"
             exact
             element={<CharacterList theme="bettercallsaul" />}
           />
-          <Route path="/character/:name" exact element={<Character />} />
+          <Route path="/character/:id" exact element={<CharacterList />} />
         </Routes>
       </BrowserRouter>
     </div>
