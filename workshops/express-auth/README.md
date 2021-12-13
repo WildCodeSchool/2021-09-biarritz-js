@@ -6,7 +6,7 @@ On va voir 3 choses en détail :
 
 1 - créer répertoire
 2 - créer application express (15min)
-app.js
+créer app.js
 install express
 utiliser express
 créer database express_auth
