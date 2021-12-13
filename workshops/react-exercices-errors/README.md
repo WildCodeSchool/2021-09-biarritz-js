@@ -3,7 +3,7 @@ Ce projet a pour but de vous aider à prendre des automatismes quant au débugga
 Les erreurs peuvent provenir de partout, ce sera à toi de chercher.
 
 Deux méthodes pour y arriver :
-Lis bien les erreurs, que ce soit dans node ou dans la console.
+Lis bien les erreurs, que ce soit dans VSCode ou dans la console.
 Utilise des console.log
 
 Afin de comparer ton résultat à la version fonctionnelle, tu peux la trouver ici :
