@@ -15,3 +15,7 @@ db-config.js
 install mysql2
 listen de l'app sur le port
 COUCOU HIBOU
+
+3 - créer une table users, qui va contenir : firstname (100), lastname (150), email (255), password (255)
+
+4 -
