@@ -63,18 +63,22 @@ app.post("/api/plants", (req, res) => {
 });
 
 //TODO 11 - Route DELETE
-app.delete("/api/plants/:id", (req, res) => {
+app.delete("/api/plants/:id", async (req, res) => {
   //récupérer le paramètre directement depuis l'url de la requete
   const { id } = req.params;
-  connection
-    .promise()
-    .query("DELETE FROM plants WHERE id_plant = ?", id)
-    .then((result) => result[0].affectedRows === 1)
-    .then((operationSuccessfull) => {
-      operationSuccessfull
-        ? res.status(200).json("Operation Successfull")
-        : res.status(404).send("Plant not found");
-    });
+
+  try {
+    const result = await connection
+      .promise()
+      .query("DELETE FROM plant WHERE id_plant = ?", id);
+    operationSuccessfull = result[0].affectedRows === 1;
+
+    operationSuccessfull
+      ? res.status(200).json("Operation Successfull")
+      : res.status(404).send("Plant not found");
+  } catch (error) {
+    res.status(500).send(error.sqlMessage);
+  }
 });
 
 // TODO 12 - Route PUT
@@ -149,6 +153,32 @@ app.post("/api/stnalp", async (req, res) => {
 const calculateToken = (id_plant = 0) => {
   return jwt.sign({ id: id_plant }, process.env.PRIVATE_KEY);
 };
+
+app.get("/koldo/plants/:id", async (req, res) => {
+  const { id } = req.params;
+
+  // version Then
+  // connection
+  //   .promise()
+  //   .query("SELECT * FROM plants WHERE id_plant = ?", [id])
+  //   .then((result) => result[0][0].id_plant)
+  //   .then((idPlant) => {
+  //     connection
+  //       .promise()
+  //       .query("SELECT name FROM plants WHERE id_plant = ?", [idPlant])
+  //       .then(([resultat]) => resultat[0].name)
+  //       .then((name) => res.status(200).send(name));
+  //   });
+
+  // version avec async/await
+  const [result] = await connection
+    .promise()
+    .query("SELECT * FROM plants WHERE id_plant = ?", [id]);
+  const [resultat] = await connection
+    .promise()
+    .query("SELECT name FROM plants WHERE id_plant = ?", [result[0].id_plant]);
+  res.status(200).send(resultat[0].name);
+});
 
 //TODO 14 - login
 app.post("/api/login", async (req, res) => {
