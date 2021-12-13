@@ -32,6 +32,14 @@ Renvoyez le dans une res status 200
 10 - Rajoutez la validation Joi pour ces champs, en respectant les restrictions de la base de données (taille de champs). Le champ email doit etre un email valide et le mot de passe doit avoir entre 7 et 11 caractères. (5min)
 11 - Si une erreur est renvoyée par Joi, passez le(s) message(s) à l'utilisateur (5min)
 12 - Si pas d'erreur, cryptez le mot de passe en utilisant User.cryptePassword. (1min car déjà fait au 8bis)
-13 - Créez dans models/user.js une fonction create qui prend en paramètre firstname, lastname, email et password (crypté) et renvoie une promesse d'exécution de la requête "INSERT INTO" correspondante.
-14 - Dans la route POST, après le cryptage du mot de passe, appelez la fonction User.create et gèrez le retour de la promesse (avec async/await ou then, au choix) pour renvoyer au choix, un status 201 avec l'id créé ou un status 500 avec l'erreur correspondante.
-15 - Testez dans postman en appelant la route POST /api/users
+13 - Créez dans models/user.js une fonction create qui prend en paramètre firstname, lastname, email et password (crypté) et renvoie une promesse d'exécution de la requête "INSERT INTO" correspondante. (5min)
+14 - Dans la route POST, après le cryptage du mot de passe, appelez la fonction User.create et gèrez le retour de la promesse (avec async/await ou then, au choix) pour renvoyer au choix, un status 201 avec l'id créé ou un status 500 avec l'erreur correspondante. (5min)
+15 - Rajoutez une route controllers/auth.js qui se déclenchera sur /api/auth, l'exporter et l'importer depuis controllers/index.js (3min)
+16 - Créez et testez la route /api/auth/coucou qui renvoie Hibou (3min)
+17 - Créez une route POST /api/auth/login avec dans le body email et password. Les récupérer. (3min)
+18 - Créez dans user.js la fonction getByEmail, qui prend en paramètre un email et renvoie dans une promesse tous les champs de l'utilisateur correspondant à cet email. L'exporter. (10min)
+19 - Dans le POST /api/auth/login, appelez la fonction getByEmail et récupérez via la promesse l'objet contenant l'utilisateur. Si aucun utilisateur n'a été trouvé, renvoyez un message à l'utilisateur, lui indiquant que l'email est incorrect. (5min)
+20 - Dans models/user/js, rajoutez et exportez la fonction verifyPassword, qui prend en entrée un mot de passe non crypté et un mot de passe crypté, et les compare : return argon2.verify(hashedPassword, plainPassword, hashingOptions). Exportez cette fonction. (5min)
+21 - Dans le POST /api/auth/login, si l'email a été trouvé, comparez le mot de passe stocké en base avec le mot de passe du req.body. S'ils sont différents (verifyPassword renverra false), retournez à l'utilisateur un message d'erreur informant que le mot de passe est incorrect.
+22 - Si le mot de passe est correct (verifyPassword a renvoyé true), créez un jwt. Pour cela, installer jsonwebtoken et créer le fichier /helpers/users.js (vous pouvez copier/coller le fichier obtenu depuis les quêtes).
+23 - Générer le token (grace à la fonction calculateToken) et le renvoyer par cookie. Vérifiez par Postman que le cookie est bien présent sur votre ordinateur après un login réussi ! Pour tester, créez un nouveau utilisateur avec un mot de passe différent et vérifiez que le token stocké dans le cookie change bien quand vous changez d'utilisateur via la route login.
