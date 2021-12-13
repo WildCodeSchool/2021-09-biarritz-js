@@ -18,4 +18,4 @@ COUCOU HIBOU
 
 3 - créer une table users, qui va contenir : firstname (100), lastname (150), email (255), password (255)
 
-4 -
+4 - Créer un répertoire controllers et un répertoire models. Rajouter controllers/users.js et models.user.js
