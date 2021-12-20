@@ -3,6 +3,7 @@ const addressesRouter = require('express').Router();
 import * as Address from '../models/address';
 import IAddress from '../interfaces/IAddress';
 import { ErrorHandler } from '../helpers/errors';
+import * as Auth from '../helpers/auth';
 
 ///////////// ADDRESS ///////////
 addressesRouter.get('/', (req: Request, res: Response, next: NextFunction) => {
@@ -17,6 +18,8 @@ addressesRouter.get('/', (req: Request, res: Response, next: NextFunction) => {
 
 addressesRouter.delete(
   '/:idAddress',
+  Auth.getCurrentUser,
+  Auth.checkUserPrivileges,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { idAddress } = req.params;
@@ -34,6 +37,7 @@ addressesRouter.delete(
 
 addressesRouter.post(
   '/',
+  Auth.getCurrentUser,
   Address.validateAddress,
   (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -48,18 +52,18 @@ addressesRouter.post(
 
 addressesRouter.put(
   '/:idAddress',
+  Auth.getCurrentUser,
   Address.validateAddress,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { idAddress } = req.params;
-      const address: IAddress = req.body;
-      const addressExists = await Address.getById(Number(idAddress));
-      if (!addressExists.length) {
+      const addressExists: IAddress = await Address.getById(Number(idAddress));
+      if (!addressExists) {
         throw new ErrorHandler(409, `This address does not exist`);
       } else {
         const addressUpdated = await Address.updateAddress(
           Number(idAddress),
-          address
+          req.body
         );
         if (addressUpdated) {
           res.status(200).send('Address updated');

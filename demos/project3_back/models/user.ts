@@ -4,6 +4,7 @@ import Joi from 'joi';
 import argon2 from 'argon2';
 import { ResultSetHeader } from 'mysql2';
 import { NextFunction, Request, Response } from 'express';
+import { ErrorHandler } from '../helpers/errors';
 
 const hashingOptions: Object = {
   type: argon2.argon2id,
@@ -30,9 +31,22 @@ const validateUser = (req: Request, res: Response, next: NextFunction) => {
     lastname: Joi.string().max(100).presence(required),
     email: Joi.string().email().max(255).presence(required),
     password: Joi.string().min(8).max(15).presence(required),
+    admin: Joi.boolean().optional(),
   }).validate(req.body, { abortEarly: false }).error;
   if (errors) {
-    res.status(422).json(errors);
+    next(new ErrorHandler(422, errors.message));
+  } else {
+    next();
+  }
+};
+
+const validateLogin = (req: Request, res: Response, next: NextFunction) => {
+  const errors = Joi.object({
+    email: Joi.string().email().max(255).required(),
+    password: Joi.string().min(8).max(15).required(),
+  }).validate(req.body, { abortEarly: false }).error;
+  if (errors) {
+    next(new ErrorHandler(422, errors.message));
   } else {
     next();
   }
@@ -49,14 +63,14 @@ const getById = (idUser: number) => {
   return connection
     .promise()
     .query('SELECT * FROM users WHERE id_user = ?', [idUser])
-    .then(([results]: Array<IUser>) => results);
+    .then(([results]: Array<Array<IUser>>) => results[0]);
 };
 
 const getByEmail = (email: string) => {
   return connection
     .promise()
     .query('SELECT * FROM users WHERE email = ?', [email])
-    .then(([results]: Array<IUser>) => results);
+    .then(([results]: Array<Array<IUser>>) => results[0]);
 };
 
 const addUser = async (user: IUser) => {
@@ -64,8 +78,8 @@ const addUser = async (user: IUser) => {
   return connection
     .promise()
     .query(
-      'INSERT INTO users (firstname, lastname, email, password ) VALUES (?, ?, ?, ?)',
-      [user.firstname, user.lastname, user.email, hashedPassword]
+      'INSERT INTO users (firstname, lastname, email, password, admin) VALUES (?, ?, ?, ?, ?)',
+      [user.firstname, user.lastname, user.email, hashedPassword, user.admin]
     )
     .then(([results]: Array<ResultSetHeader>) => results.insertId);
 };
@@ -96,6 +110,11 @@ const updateUser = async (idUser: number, user: IUser) => {
     sqlValues.push(hashedPassword);
     oneValue = true;
   }
+  if (user.admin) {
+    sql += oneValue ? ', admin = ? ' : ' admin = ? ';
+    sqlValues.push(user.admin);
+    oneValue = true;
+  }
   sql += ' WHERE id_user = ?';
   sqlValues.push(idUser);
 
@@ -113,7 +132,9 @@ const deleteUser = async (idUser: number) => {
 };
 
 export {
+  verifyPassword,
   validateUser,
+  validateLogin,
   getAllUsers,
   addUser,
   getByEmail,

@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 const usersRouter = require('express').Router();
 import * as User from '../models/user';
 import * as Address from '../models/address';
+import * as Auth from '../helpers/auth';
 import IUser from '../interfaces/IUser';
 import IAddress from '../interfaces/IAddress';
 import { ErrorHandler } from '../helpers/errors';
@@ -22,7 +23,7 @@ usersRouter.get(
   (req: Request, res: Response, next: NextFunction) => {
     try {
       const { iduser } = req.params;
-      User.getById(Number(iduser)).then((users: Array<IUser>) =>
+      User.getById(Number(iduser)).then((users: IUser) =>
         res.status(200).json(users)
       );
     } catch (err) {
@@ -33,17 +34,17 @@ usersRouter.get(
 
 usersRouter.post(
   '/',
+  Auth.getCurrentUser,
   User.validateUser,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const user: IUser = req.body;
-
-      const userExists = await User.getByEmail(user.email);
-      if (userExists.length) {
+      const userExists: IUser = await User.getByEmail(user.email);
+      if (userExists) {
         throw new ErrorHandler(409, `This user already exists`);
       } else {
-        const idCreated = await User.addUser(user);
-        res.status(201).json({ id_user: idCreated, ...user });
+        user.id_user = await User.addUser(user);
+        res.status(201).json(user);
       }
     } catch (err) {
       next(err);
@@ -53,15 +54,15 @@ usersRouter.post(
 
 usersRouter.put(
   '/:idUser',
+  Auth.getCurrentUser,
   User.validateUser,
   async (req: Request, res: Response, next: NextFunction) => {
     const { idUser } = req.params;
-    const user: IUser = req.body;
-    const userExists = await User.getById(Number(idUser));
-    if (!userExists.length) {
+    const userExists: IUser = await User.getById(Number(idUser));
+    if (!userExists) {
       throw new ErrorHandler(404, `This user does not exist`);
     } else {
-      const userUpdated = await User.updateUser(Number(idUser), user);
+      const userUpdated = await User.updateUser(Number(idUser), req.body);
       if (userUpdated) {
         res.status(200).send('User updated');
       } else {
@@ -73,11 +74,13 @@ usersRouter.put(
 
 usersRouter.delete(
   '/:idUser',
+  Auth.getCurrentUser,
+  Auth.checkUserPrivileges,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { idUser } = req.params;
-      const userExists = await User.getById(Number(idUser));
-      if (!userExists.length) {
+      const userExists: IUser = await User.getById(Number(idUser));
+      if (!userExists) {
         throw new ErrorHandler(404, `This user doesn't exist`);
       } else {
         // Aller supprimer les adresses de l'utilisateur
@@ -101,8 +104,8 @@ usersRouter.get(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { idUser } = req.params;
-      const userExists = await User.getById(Number(idUser));
-      if (!userExists.length) {
+      const userExists: IUser = await User.getById(Number(idUser));
+      if (!userExists) {
         throw new ErrorHandler(404, `This user does not exist`);
       } else {
         const addresses: Array<IAddress> = await Address.getByUser(
@@ -118,11 +121,13 @@ usersRouter.get(
 
 usersRouter.delete(
   '/:idUser/addresses',
+  Auth.getCurrentUser,
+  Auth.checkUserPrivileges,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { idUser } = req.params;
-      const userExists = await User.getById(Number(idUser));
-      if (!userExists.length) {
+      const userExists: IUser = await User.getById(Number(idUser));
+      if (!userExists) {
         throw new ErrorHandler(404, `This user does not exist`);
       } else {
         const addressesDeleted = await Address.deleteAddressByUser(

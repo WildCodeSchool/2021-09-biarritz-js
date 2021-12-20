@@ -1,7 +1,7 @@
 export default interface IAddress {
   address1: string;
   address2: string;
-  postalCode: string;
+  postal_code: string;
   city: string;
-  idUser: number;
+  id_user: number;
 }

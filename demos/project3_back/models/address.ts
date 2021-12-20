@@ -34,7 +34,7 @@ const getById = (idAddress: number) => {
   return connection
     .promise()
     .query('SELECT * FROM addresses WHERE id_address = ?', [idAddress])
-    .then(([results]: Array<IAddress>) => results);
+    .then(([results]: Array<Array<IAddress>>) => results[0]);
 };
 
 const getByUser = (idUser: number) => {
@@ -52,9 +52,9 @@ const addAddress = (address: IAddress) => {
       [
         address.address1,
         address.address2,
-        address.postalCode,
+        address.postal_code,
         address.city,
-        address.idUser,
+        address.id_user,
       ]
     )
     .then(([results]: Array<ResultSetHeader>) => results.insertId);
@@ -75,9 +75,9 @@ const updateAddress = (idAddress: number, address: IAddress) => {
     sqlValues.push(address.address2);
     oneValue = true;
   }
-  if (address.postalCode) {
+  if (address.postal_code) {
     sql += oneValue ? ', postal_code = ? ' : ' postal_code = ? ';
-    sqlValues.push(address.postalCode);
+    sqlValues.push(address.postal_code);
     oneValue = true;
   }
   if (address.city) {

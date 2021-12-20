@@ -7,8 +7,9 @@ CREATE TABLE IF NOT EXISTS `Project3`.`users` (
   `lastname` VARCHAR(100) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
+  `admin` TINYINT(1) NULL DEFAULT 0,
   PRIMARY KEY (`id_user`))
-ENGINE = InnoDB;
+ENGINE = InnoDB
 
 CREATE TABLE IF NOT EXISTS `Project3`.`addresses` (
   `id_address` INT NOT NULL AUTO_INCREMENT,
