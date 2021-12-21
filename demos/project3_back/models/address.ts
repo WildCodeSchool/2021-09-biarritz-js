@@ -18,7 +18,7 @@ const validateAddress = (req: Request, res: Response, next: NextFunction) => {
     idUser: Joi.number().positive().presence(required),
   }).validate(req.body, { abortEarly: false }).error;
   if (errors) {
-    res.status(422).json(errors);
+    next(new ErrorHandler(422, errors.message));
   } else {
     next();
   }

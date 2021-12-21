@@ -89,6 +89,7 @@ usersRouter.delete(
 usersRouter.get(
   '/:idUser/addresses',
   User.userExists,
+  Auth.getCurrentSession,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { idUser } = req.params;

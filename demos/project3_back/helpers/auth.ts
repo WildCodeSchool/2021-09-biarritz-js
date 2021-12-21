@@ -28,14 +28,10 @@ const checkSessionPrivileges = (
   res: Response,
   next: NextFunction
 ) => {
-  try {
-    if (req.userInfo === undefined || !req.userInfo.admin) {
-      throw new ErrorHandler(401, 'You must be admin to perform this action');
-    } else {
-      next();
-    }
-  } catch (err) {
-    next(err);
+  if (req.userInfo === undefined || !req.userInfo.admin) {
+    next(new ErrorHandler(401, 'You must be admin to perform this action'));
+  } else {
+    next();
   }
 };
 
