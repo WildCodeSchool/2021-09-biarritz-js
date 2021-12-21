@@ -23,7 +23,7 @@ authRouteur.post('/login', (req, res) => {
           if (passwordOk) {
             // étape 23
             // générer un token
-            const token = calculateToken(email);
+            const token = calculateToken(email, user.id_user); // étape 24 - rajout de l'id
 
             // l'envoyer par cookie
             res.cookie('monCookie', token);

@@ -11,6 +11,11 @@ usersRouteur.post('/test', (req, res) => {
   );
 });
 
+// étape 25
+usersRouteur.put('/', MonMiddleWare, (req, res) => {
+  res.status(200).send(req.userId);
+});
+
 // étape 9
 usersRouteur.post('/', (req, res) => {
   const { firstname, lastname, email, password } = req.body;

@@ -3,8 +3,9 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
-const calculateToken = (userEmail = '') => {
-  return jwt.sign({ email: userEmail }, process.env.PRIVATE_KEY);
+// étape 24 - rajout de l'id
+const calculateToken = (userEmail = '', userId = 0) => {
+  return jwt.sign({ email: userEmail, id: userId }, process.env.PRIVATE_KEY);
 };
 
 module.exports = calculateToken;

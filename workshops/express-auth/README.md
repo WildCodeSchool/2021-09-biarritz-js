@@ -45,5 +45,6 @@ Renvoyez le dans une res status 200
 23 - Générer le token (grace à la fonction calculateToken) et le renvoyer par cookie. Vérifiez par Postman que le cookie est bien présent sur votre ordinateur après un login réussi ! Pour tester, créez un nouveau utilisateur avec un mot de passe différent et vérifiez que le token stocké dans le cookie change bien quand vous changez d'utilisateur via la route login. (10min)
 24 - Stocker dans le token l'id utilisateur. Tester grace à jwt.io que le token contient bien cette valeur (3min)
 25 - Créer une route PUT /api/users qui sera réservée uniquement aux clients loggés. (2min)
-25 - Quand l'utilisateur demande une fonction restricted (PUT /api/users), aller lire le cookie et le renvoyer en res.status à postman. Pour cela, installer cookie-parser. L'importer dans app.js et l'utiliser comme un middleware. (5min)
-26 - Créer un middleware dans helpers/users.js (req, res, next). Ce middleware va s'appeler readUserFromCookie, il va lire le cookie, décrypter le token et stocker l'id utilisateur dans req.userId. (15min)
+26 - Quand l'utilisateur demande une fonction restricted (PUT /api/users), aller lire le cookie et le renvoyer en res.status à postman. Pour cela, installer cookie-parser. L'importer dans app.js et l'utiliser comme un middleware. (5min)
+27 - Créer un middleware dans helpers/users.js (req, res, next). Ce middleware va s'appeler readUserFromCookie, il va lire le cookie, décrypter le token (jwt.decode) et stocker l'id utilisateur dans req.userId. (15min)
+28 - Dans la route PUT /api/users, appelez le middleware (avant req,res). Dans le contenu de la route PUT, renvoyez à l'utilisateur dans une res.status(200) son id, lu directement dans req.userId. (10min)
