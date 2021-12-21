@@ -1,29 +1,31 @@
-import { Request, Response, NextFunction } from 'express';
-const addressesRouter = require('express').Router();
-import * as Address from '../models/address';
+import { Request, Response, NextFunction, Router } from 'express';
+import {
+  getAllAddresses,
+  deleteAddress,
+  updateAddress,
+  validateAddress,
+  addressExists,
+} from '../models/address';
 import IAddress from '../interfaces/IAddress';
 import { ErrorHandler } from '../helpers/errors';
-import * as Auth from '../helpers/auth';
+import { getCurrentSession, checkSessionPrivileges } from '../helpers/auth';
 
+const addressesRouter = Router();
 ///////////// ADDRESS ///////////
 addressesRouter.get('/', (req: Request, res: Response, next: NextFunction) => {
-  try {
-    Address.getAllAddresses().then((addresses: Array<IAddress>) =>
-      res.status(200).json(addresses)
-    );
-  } catch (err) {
-    next(err);
-  }
+  getAllAddresses()
+    .then((addresses: Array<IAddress>) => res.status(200).json(addresses))
+    .catch((err) => next(err));
 });
 
 addressesRouter.delete(
   '/:idAddress',
-  Auth.getCurrentSession,
-  Auth.checkSessionPrivileges,
+  getCurrentSession,
+  checkSessionPrivileges,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { idAddress } = req.params;
-      const addressDeleted = await Address.deleteAddress(Number(idAddress));
+      const addressDeleted = await deleteAddress(Number(idAddress));
       if (addressDeleted) {
         res.status(200).send('Address deleted');
       } else {
@@ -37,30 +39,26 @@ addressesRouter.delete(
 
 addressesRouter.post(
   '/',
-  Auth.getCurrentSession,
-  Address.validateAddress,
+  getCurrentSession,
+  validateAddress,
   (req: Request, res: Response, next: NextFunction) => {
-    try {
-      Address.getAllAddresses().then((addresses: Array<IAddress>) =>
-        res.status(200).json(addresses)
-      );
-    } catch (err) {
-      next(err);
-    }
+    getAllAddresses()
+      .then((addresses: Array<IAddress>) => res.status(200).json(addresses))
+      .catch((err) => next(err));
   }
 );
 
 addressesRouter.put(
   '/:idAddress',
-  Auth.getCurrentSession,
-  Address.validateAddress,
-  Address.addressExists,
+  getCurrentSession,
+  validateAddress,
+  addressExists,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { idAddress } = req.params;
-      const addressUpdated = await Address.updateAddress(
+      const addressUpdated = await updateAddress(
         Number(idAddress),
-        req.body
+        req.body as IAddress
       );
       if (addressUpdated) {
         res.status(200).send('Address updated');

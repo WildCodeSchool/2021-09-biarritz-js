@@ -1,23 +1,26 @@
-const connection = require('../db-config');
+import connection from '../db-config';
 import IUser from '../interfaces/IUser';
 import Joi from 'joi';
-import argon2 from 'argon2';
+import argon2, { Options } from 'argon2';
 import { ResultSetHeader } from 'mysql2';
 import { NextFunction, Request, Response } from 'express';
 import { ErrorHandler } from '../helpers/errors';
 
-const hashingOptions: Object = {
+const hashingOptions: Options & { raw?: false } = {
   type: argon2.argon2id,
   memoryCost: 2 ** 16,
   timeCost: 5,
   parallelism: 1,
 };
 
-const hashPassword = (password: string) => {
+const hashPassword = (password: string): Promise<string> => {
   return argon2.hash(password, hashingOptions);
 };
 
-const verifyPassword = (password: string, hashedPassword: string) => {
+const verifyPassword = (
+  password: string,
+  hashedPassword: string
+): Promise<boolean> => {
   return argon2.verify(hashedPassword, password, hashingOptions);
 };
 
@@ -54,7 +57,7 @@ const validateLogin = (req: Request, res: Response, next: NextFunction) => {
 
 const emailIsFree = async (req: Request, res: Response, next: NextFunction) => {
   // Récupèrer l'email dans le req.body
-  const user: IUser = req.body;
+  const user = req.body as IUser;
   // Vérifier si l'email appartient déjà à un user
   const userExists: IUser = await getByEmail(user.email);
   // Si oui => erreur
@@ -66,57 +69,60 @@ const emailIsFree = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-const userExists = async (req: Request, res: Response, next: NextFunction) => {
+const userExists = (req: Request, res: Response, next: NextFunction) => {
   // Récupèrer l'id user de req.params
   const { idUser } = req.params;
   // Vérifier si le user existe
-  const userExists: IUser = await getById(Number(idUser));
-  // Si non, => erreur
-  if (!userExists) {
-    next(new ErrorHandler(404, `This user doesn't exist`));
-  }
-  // Si oui => next
-  else {
-    next();
-  }
+  getById(Number(idUser))
+    .then((userExists) => {
+      // Si non, => erreur
+      if (!userExists) {
+        next(new ErrorHandler(404, `This user doesn't exist`));
+      }
+      // Si oui => next
+      else {
+        next();
+      }
+    })
+    .catch((err) => next(err));
 };
 
-const getAllUsers = () => {
+const getAllUsers = (): Promise<IUser[]> => {
   return connection
     .promise()
-    .query('SELECT * FROM users')
-    .then(([results]: Array<IUser>) => results);
+    .query<IUser[]>('SELECT * FROM users')
+    .then(([results]) => results);
 };
 
-const getById = (idUser: number) => {
+const getById = (idUser: number): Promise<IUser> => {
   return connection
     .promise()
-    .query('SELECT * FROM users WHERE id_user = ?', [idUser])
-    .then(([results]: Array<Array<IUser>>) => results[0]);
+    .query<IUser[]>('SELECT * FROM users WHERE id_user = ?', [idUser])
+    .then(([results]) => results[0]);
 };
 
-const getByEmail = (email: string) => {
+const getByEmail = (email: string): Promise<IUser> => {
   return connection
     .promise()
-    .query('SELECT * FROM users WHERE email = ?', [email])
-    .then(([results]: Array<Array<IUser>>) => results[0]);
+    .query<IUser[]>('SELECT * FROM users WHERE email = ?', [email])
+    .then(([results]) => results[0]);
 };
 
-const addUser = async (user: IUser) => {
+const addUser = async (user: IUser): Promise<number> => {
   const hashedPassword = await hashPassword(user.password);
   return connection
     .promise()
-    .query(
+    .query<ResultSetHeader>(
       'INSERT INTO users (firstname, lastname, email, password, admin) VALUES (?, ?, ?, ?, ?)',
       [user.firstname, user.lastname, user.email, hashedPassword, user.admin]
     )
-    .then(([results]: Array<ResultSetHeader>) => results.insertId);
+    .then(([results]) => results.insertId);
 };
 
-const updateUser = async (idUser: number, user: IUser) => {
-  let sql: string = 'UPDATE users SET ';
-  let sqlValues: Array<any> = [];
-  let oneValue: boolean = false;
+const updateUser = async (idUser: number, user: IUser): Promise<boolean> => {
+  let sql = 'UPDATE users SET ';
+  const sqlValues: Array<string | number | boolean> = [];
+  let oneValue = false;
 
   if (user.firstname) {
     sql += 'firstname = ? ';
@@ -149,15 +155,15 @@ const updateUser = async (idUser: number, user: IUser) => {
 
   return connection
     .promise()
-    .query(sql, sqlValues)
-    .then(([results]: Array<ResultSetHeader>) => results.affectedRows === 1);
+    .query<ResultSetHeader>(sql, sqlValues)
+    .then(([results]) => results.affectedRows === 1);
 };
 
-const deleteUser = async (idUser: number) => {
+const deleteUser = async (idUser: number): Promise<boolean> => {
   return connection
     .promise()
-    .query('DELETE FROM users WHERE id_user = ?', [idUser])
-    .then(([results]: Array<ResultSetHeader>) => results.affectedRows === 1);
+    .query<ResultSetHeader>('DELETE FROM users WHERE id_user = ?', [idUser])
+    .then(([results]) => results.affectedRows === 1);
 };
 
 export {

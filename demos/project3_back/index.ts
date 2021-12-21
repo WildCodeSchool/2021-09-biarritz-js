@@ -1,8 +1,8 @@
 import express from 'express';
-const cookieParser = require('cookie-parser');
-require('dotenv').config();
+import cookieParser from 'cookie-parser';
 import { handleError } from './helpers/errors';
 import setupRoutes from './controllers';
+import 'dotenv/config';
 
 const app = express();
 const port = process.env.PORT || 3000;

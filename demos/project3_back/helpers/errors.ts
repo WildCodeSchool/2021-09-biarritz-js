@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-require('dotenv').config();
+import 'dotenv/config';
 
 class ErrorHandler extends Error {
   statusCode: number;
@@ -9,7 +9,7 @@ class ErrorHandler extends Error {
     this.message = message;
   }
 }
-
+/* eslint-disable @typescript-eslint/no-unused-vars */
 const handleError = (
   err: ErrorHandler,
   req: Request,
@@ -32,5 +32,6 @@ const handleError = (
     });
   }
 };
+/* eslint-enable @typescript-eslint/no-unused-vars */
 
 export { ErrorHandler, handleError };

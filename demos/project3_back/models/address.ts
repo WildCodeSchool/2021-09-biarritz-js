@@ -1,4 +1,4 @@
-const connection = require('../db-config.js');
+import connection from '../db-config.js';
 import { ResultSetHeader } from 'mysql2';
 import IAddress from '../interfaces/IAddress';
 import Joi from 'joi';
@@ -38,31 +38,33 @@ const addressExists = async (
   }
 };
 
-const getAllAddresses = () => {
+const getAllAddresses = (): Promise<IAddress[]> => {
   return connection
     .promise()
-    .query('SELECT * FROM addresses')
-    .then(([results]: Array<IAddress>) => results);
+    .query<IAddress[]>('SELECT * FROM addresses')
+    .then(([results]) => results);
 };
 
-const getById = (idAddress: number) => {
+const getById = (idAddress: number): Promise<IAddress> => {
   return connection
     .promise()
-    .query('SELECT * FROM addresses WHERE id_address = ?', [idAddress])
-    .then(([results]: Array<Array<IAddress>>) => results[0]);
+    .query<IAddress[]>('SELECT * FROM addresses WHERE id_address = ?', [
+      idAddress,
+    ])
+    .then(([results]) => results[0]);
 };
 
-const getByUser = (idUser: number) => {
+const getByUser = (idUser: number): Promise<IAddress[]> => {
   return connection
     .promise()
-    .query('SELECT * FROM addresses WHERE id_user = ?', [idUser])
-    .then(([results]: Array<IAddress>) => results);
+    .query<IAddress[]>('SELECT * FROM addresses WHERE id_user = ?', [idUser])
+    .then(([results]) => results);
 };
 
-const addAddress = (address: IAddress) => {
+const addAddress = (address: IAddress): Promise<number> => {
   return connection
     .promise()
-    .query(
+    .query<ResultSetHeader>(
       'INSERT INTO address (address1, address2, postal_code, city, id_user ) VALUES (?, ?, ?, ?, ?)',
       [
         address.address1,
@@ -72,13 +74,16 @@ const addAddress = (address: IAddress) => {
         address.id_user,
       ]
     )
-    .then(([results]: Array<ResultSetHeader>) => results.insertId);
+    .then(([results]) => results.insertId);
 };
 
-const updateAddress = (idAddress: number, address: IAddress) => {
-  let sql: string = 'UPDATE addresses SET ';
-  let sqlValues: Array<any> = [];
-  let oneValue: boolean = false;
+const updateAddress = (
+  idAddress: number,
+  address: IAddress
+): Promise<boolean> => {
+  let sql = 'UPDATE addresses SET ';
+  const sqlValues: Array<string | number> = [];
+  let oneValue = false;
 
   if (address.address1) {
     sql += 'address1 = ? ';
@@ -105,22 +110,24 @@ const updateAddress = (idAddress: number, address: IAddress) => {
 
   return connection
     .promise()
-    .query(sql, sqlValues)
-    .then(([results]: Array<ResultSetHeader>) => results.affectedRows === 1);
+    .query<ResultSetHeader>(sql, sqlValues)
+    .then(([results]) => results.affectedRows === 1);
 };
 
-const deleteAddress = async (idAddress: number) => {
+const deleteAddress = async (idAddress: number): Promise<boolean> => {
   return connection
     .promise()
-    .query('DELETE FROM addresses WHERE id_addresses = ?', [idAddress])
-    .then(([results]: Array<ResultSetHeader>) => results.affectedRows === 1);
+    .query<ResultSetHeader>('DELETE FROM addresses WHERE id_addresses = ?', [
+      idAddress,
+    ])
+    .then(([results]) => results.affectedRows === 1);
 };
 
-const deleteAddressByUser = async (idUser: number) => {
+const deleteAddressByUser = async (idUser: number): Promise<boolean> => {
   return connection
     .promise()
-    .query('DELETE FROM addresses WHERE id_user = ?', [idUser])
-    .then(([results]: Array<ResultSetHeader>) => results.affectedRows > 1);
+    .query<ResultSetHeader>('DELETE FROM addresses WHERE id_user = ?', [idUser])
+    .then(([results]) => results.affectedRows > 1);
 };
 
 export {

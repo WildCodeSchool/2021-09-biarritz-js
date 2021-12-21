@@ -1,5 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
-const usersRouter = require('express').Router();
+import { NextFunction, Request, Response, Router } from 'express';
 import * as User from '../models/user';
 import * as Address from '../models/address';
 import * as Auth from '../helpers/auth';
@@ -7,28 +6,22 @@ import IUser from '../interfaces/IUser';
 import IAddress from '../interfaces/IAddress';
 import { ErrorHandler } from '../helpers/errors';
 
+const usersRouter = Router();
+
 ///////////// USERS ///////////////
 usersRouter.get('/', (req: Request, res: Response, next: NextFunction) => {
-  try {
-    User.getAllUsers().then((users: Array<IUser>) =>
-      res.status(200).json(users)
-    );
-  } catch (err) {
-    next(err);
-  }
+  User.getAllUsers()
+    .then((users: Array<IUser>) => res.status(200).json(users))
+    .catch((err) => next(err));
 });
 
 usersRouter.get(
   '/:iduser',
   (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const { iduser } = req.params;
-      User.getById(Number(iduser)).then((users: IUser) =>
-        res.status(200).json(users)
-      );
-    } catch (err) {
-      next(err);
-    }
+    const { iduser } = req.params;
+    User.getById(Number(iduser))
+      .then((users: IUser) => res.status(200).json(users))
+      .catch((err) => next(err));
   }
 );
 
@@ -39,7 +32,7 @@ usersRouter.post(
   User.emailIsFree,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const user: IUser = req.body;
+      const user = req.body as IUser;
       user.id_user = await User.addUser(user);
       res.status(201).json(user);
     } catch (err) {
@@ -53,10 +46,13 @@ usersRouter.put(
   Auth.getCurrentSession,
   User.validateUser,
   User.userExists,
-  async (req: Request, res: Response, next: NextFunction) => {
+  async (req: Request, res: Response) => {
     const { idUser } = req.params;
 
-    const userUpdated = await User.updateUser(Number(idUser), req.body);
+    const userUpdated = await User.updateUser(
+      Number(idUser),
+      req.body as IUser
+    );
     if (userUpdated) {
       res.status(200).send('User updated');
     } else {

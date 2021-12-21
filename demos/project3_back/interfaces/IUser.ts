@@ -1,5 +1,7 @@
-export default interface IUser {
-  id_user: string;
+import { RowDataPacket } from 'mysql2';
+
+export default interface IUser extends RowDataPacket {
+  id_user: number;
   firstname: string;
   lastname: string;
   email: string;
