@@ -1,6 +1,10 @@
 // étape 5
 const usersRouteur = require('express').Router();
 const User = require('../models/user');
+const { readUserFromCookie } = require('../helpers/users');
+
+require('dotenv').config();
+const jwt = require('jsonwebtoken');
 
 // étape 8bis
 usersRouteur.post('/test', (req, res) => {
@@ -12,8 +16,11 @@ usersRouteur.post('/test', (req, res) => {
 });
 
 // étape 25
-usersRouteur.put('/', MonMiddleWare, (req, res) => {
-  res.status(200).send(req.userId);
+usersRouteur.put('/', readUserFromCookie, (req, res) => {
+  //étape 26
+  //res.status(200).send(req.cookies);
+  //étape 28
+  res.status(200).json(req.userId);
 });
 
 // étape 9
@@ -21,6 +28,7 @@ usersRouteur.post('/', (req, res) => {
   const { firstname, lastname, email, password } = req.body;
   // étape 10
   const validationErrors = User.validate(req.body);
+  console.log(req.userId);
   if (validationErrors) {
     // étape 11
     res.status(422).json(validationErrors.details);

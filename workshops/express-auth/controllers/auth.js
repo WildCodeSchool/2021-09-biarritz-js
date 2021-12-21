@@ -1,6 +1,6 @@
 const authRouteur = require('express').Router();
 const { getByEmail, verifyPassword } = require('../models/user');
-const calculateToken = require('../helpers/users');
+const { calculateToken } = require('../helpers/users');
 
 // étape 16
 authRouteur.get('/coucoucou', (req, res) => {
