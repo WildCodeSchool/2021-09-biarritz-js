@@ -1,5 +1,6 @@
 const authRouteur = require('express').Router();
 const { getByEmail, verifyPassword } = require('../models/user');
+const calculateToken = require('../helpers/users');
 
 // étape 16
 authRouteur.get('/coucoucou', (req, res) => {
@@ -20,6 +21,13 @@ authRouteur.post('/login', (req, res) => {
         verifyPassword(password, user.password).then((passwordOk) => {
           // étape 22
           if (passwordOk) {
+            // étape 23
+            // générer un token
+            const token = calculateToken(email);
+
+            // l'envoyer par cookie
+            res.cookie('monCookie', token);
+            res.send();
           }
         });
       }
