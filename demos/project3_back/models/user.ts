@@ -52,6 +52,35 @@ const validateLogin = (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
+const emailIsFree = async (req: Request, res: Response, next: NextFunction) => {
+  // Récupèrer l'email dans le req.body
+  const user: IUser = req.body;
+  // Vérifier si l'email appartient déjà à un user
+  const userExists: IUser = await getByEmail(user.email);
+  // Si oui => erreur
+  if (userExists) {
+    next(new ErrorHandler(409, `This user already exists`));
+  } else {
+    // Si non => next
+    next();
+  }
+};
+
+const userExists = async (req: Request, res: Response, next: NextFunction) => {
+  // Récupèrer l'id user de req.params
+  const { idUser } = req.params;
+  // Vérifier si le user existe
+  const userExists: IUser = await getById(Number(idUser));
+  // Si non, => erreur
+  if (!userExists) {
+    next(new ErrorHandler(404, `This user doesn't exist`));
+  }
+  // Si oui => next
+  else {
+    next();
+  }
+};
+
 const getAllUsers = () => {
   return connection
     .promise()
@@ -141,4 +170,6 @@ export {
   getById,
   deleteUser,
   updateUser,
+  emailIsFree,
+  userExists,
 };

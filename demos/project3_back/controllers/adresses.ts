@@ -18,8 +18,8 @@ addressesRouter.get('/', (req: Request, res: Response, next: NextFunction) => {
 
 addressesRouter.delete(
   '/:idAddress',
-  Auth.getCurrentUser,
-  Auth.checkUserPrivileges,
+  Auth.getCurrentSession,
+  Auth.checkSessionPrivileges,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { idAddress } = req.params;
@@ -37,7 +37,7 @@ addressesRouter.delete(
 
 addressesRouter.post(
   '/',
-  Auth.getCurrentUser,
+  Auth.getCurrentSession,
   Address.validateAddress,
   (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -52,24 +52,20 @@ addressesRouter.post(
 
 addressesRouter.put(
   '/:idAddress',
-  Auth.getCurrentUser,
+  Auth.getCurrentSession,
   Address.validateAddress,
+  Address.addressExists,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { idAddress } = req.params;
-      const addressExists: IAddress = await Address.getById(Number(idAddress));
-      if (!addressExists) {
-        throw new ErrorHandler(409, `This address does not exist`);
+      const addressUpdated = await Address.updateAddress(
+        Number(idAddress),
+        req.body
+      );
+      if (addressUpdated) {
+        res.status(200).send('Address updated');
       } else {
-        const addressUpdated = await Address.updateAddress(
-          Number(idAddress),
-          req.body
-        );
-        if (addressUpdated) {
-          res.status(200).send('Address updated');
-        } else {
-          throw new ErrorHandler(500, `Address cannot be updated`);
-        }
+        throw new ErrorHandler(500, `Address cannot be updated`);
       }
     } catch (err) {
       next(err);

@@ -3,6 +3,7 @@ import { ResultSetHeader } from 'mysql2';
 import IAddress from '../interfaces/IAddress';
 import Joi from 'joi';
 import { NextFunction, Request, Response } from 'express';
+import { ErrorHandler } from '../helpers/errors';
 
 const validateAddress = (req: Request, res: Response, next: NextFunction) => {
   let required: Joi.PresenceMode = 'optional';
@@ -18,6 +19,20 @@ const validateAddress = (req: Request, res: Response, next: NextFunction) => {
   }).validate(req.body, { abortEarly: false }).error;
   if (errors) {
     res.status(422).json(errors);
+  } else {
+    next();
+  }
+};
+
+const addressExists = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { idAddress } = req.params;
+  const addressExists: IAddress = await getById(Number(idAddress));
+  if (!addressExists) {
+    next(new ErrorHandler(409, `This address does not exist`));
   } else {
     next();
   }
@@ -117,4 +132,5 @@ export {
   getById,
   getByUser,
   deleteAddressByUser,
+  addressExists,
 };

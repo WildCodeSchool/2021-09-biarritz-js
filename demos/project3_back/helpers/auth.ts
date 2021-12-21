@@ -11,7 +11,7 @@ const calculateToken = (userEmail = '', idUser = 0, admin = false) => {
   );
 };
 
-const getCurrentUser = (req: Request, res: Response, next: NextFunction) => {
+const getCurrentSession = (req: Request, res: Response, next: NextFunction) => {
   if (!req.cookies.user_token) {
     next(new ErrorHandler(401, 'Unauthorized user, please login'));
   }
@@ -23,13 +23,12 @@ const getCurrentUser = (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-const checkUserPrivileges = (
+const checkSessionPrivileges = (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
-    console.log(req.userInfo);
     if (req.userInfo === undefined || !req.userInfo.admin) {
       throw new ErrorHandler(401, 'You must be admin to perform this action');
     } else {
@@ -40,4 +39,4 @@ const checkUserPrivileges = (
   }
 };
 
-export { calculateToken, getCurrentUser, checkUserPrivileges };
+export { calculateToken, getCurrentSession, checkSessionPrivileges };

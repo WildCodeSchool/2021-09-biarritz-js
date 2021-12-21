@@ -34,18 +34,14 @@ usersRouter.get(
 
 usersRouter.post(
   '/',
-  Auth.getCurrentUser,
+  Auth.getCurrentSession,
   User.validateUser,
+  User.emailIsFree,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const user: IUser = req.body;
-      const userExists: IUser = await User.getByEmail(user.email);
-      if (userExists) {
-        throw new ErrorHandler(409, `This user already exists`);
-      } else {
-        user.id_user = await User.addUser(user);
-        res.status(201).json(user);
-      }
+      user.id_user = await User.addUser(user);
+      res.status(201).json(user);
     } catch (err) {
       next(err);
     }
@@ -54,43 +50,34 @@ usersRouter.post(
 
 usersRouter.put(
   '/:idUser',
-  Auth.getCurrentUser,
+  Auth.getCurrentSession,
   User.validateUser,
+  User.userExists,
   async (req: Request, res: Response, next: NextFunction) => {
     const { idUser } = req.params;
-    const userExists: IUser = await User.getById(Number(idUser));
-    if (!userExists) {
-      throw new ErrorHandler(404, `This user does not exist`);
+
+    const userUpdated = await User.updateUser(Number(idUser), req.body);
+    if (userUpdated) {
+      res.status(200).send('User updated');
     } else {
-      const userUpdated = await User.updateUser(Number(idUser), req.body);
-      if (userUpdated) {
-        res.status(200).send('User updated');
-      } else {
-        throw new ErrorHandler(500, `User cannot be updated`);
-      }
+      throw new ErrorHandler(500, `User cannot be updated`);
     }
   }
 );
 
 usersRouter.delete(
   '/:idUser',
-  Auth.getCurrentUser,
-  Auth.checkUserPrivileges,
+  Auth.getCurrentSession,
+  Auth.checkSessionPrivileges,
+  User.userExists,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { idUser } = req.params;
-      const userExists: IUser = await User.getById(Number(idUser));
-      if (!userExists) {
-        throw new ErrorHandler(404, `This user doesn't exist`);
+      const userDeleted = await User.deleteUser(Number(idUser));
+      if (userDeleted) {
+        res.status(200).send('User deleted');
       } else {
-        // Aller supprimer les adresses de l'utilisateur
-
-        const userDeleted = await User.deleteUser(Number(idUser));
-        if (userDeleted) {
-          res.status(200).send('User deleted');
-        } else {
-          throw new ErrorHandler(500, `This user cannot be deleted`);
-        }
+        throw new ErrorHandler(500, `This user cannot be deleted`);
       }
     } catch (err) {
       next(err);
@@ -101,18 +88,15 @@ usersRouter.delete(
 ////////// ADDRESSES BY USER
 usersRouter.get(
   '/:idUser/addresses',
+  User.userExists,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { idUser } = req.params;
-      const userExists: IUser = await User.getById(Number(idUser));
-      if (!userExists) {
-        throw new ErrorHandler(404, `This user does not exist`);
-      } else {
-        const addresses: Array<IAddress> = await Address.getByUser(
-          Number(idUser)
-        );
-        res.status(200).json(addresses);
-      }
+
+      const addresses: Array<IAddress> = await Address.getByUser(
+        Number(idUser)
+      );
+      res.status(200).json(addresses);
     } catch (err) {
       next(err);
     }
@@ -121,23 +105,20 @@ usersRouter.get(
 
 usersRouter.delete(
   '/:idUser/addresses',
-  Auth.getCurrentUser,
-  Auth.checkUserPrivileges,
+  Auth.getCurrentSession,
+  Auth.checkSessionPrivileges,
+  User.userExists,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { idUser } = req.params;
-      const userExists: IUser = await User.getById(Number(idUser));
-      if (!userExists) {
-        throw new ErrorHandler(404, `This user does not exist`);
+
+      const addressesDeleted = await Address.deleteAddressByUser(
+        Number(idUser)
+      );
+      if (addressesDeleted) {
+        res.status(200).send('Addresses deleted');
       } else {
-        const addressesDeleted = await Address.deleteAddressByUser(
-          Number(idUser)
-        );
-        if (addressesDeleted) {
-          res.status(200).send('Addresses deleted');
-        } else {
-          throw new ErrorHandler(500, `Addresses cannot be deleted`);
-        }
+        throw new ErrorHandler(500, `Addresses cannot be deleted`);
       }
     } catch (err) {
       next(err);
