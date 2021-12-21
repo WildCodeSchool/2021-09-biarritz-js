@@ -39,10 +39,10 @@ Renvoyez le dans une res status 200
 17 - Créez une route POST /api/auth/login avec dans le body email et password. Les récupérer. (3min)
 18 - Créez dans user.js la fonction getByEmail, qui prend en paramètre un email et renvoie dans une promesse tous les champs de l'utilisateur correspondant à cet email. L'exporter. (10min)
 19 - Dans le POST /api/auth/login, appelez la fonction getByEmail et récupérez via la promesse l'objet contenant l'utilisateur. Si aucun utilisateur n'a été trouvé, renvoyez un message à l'utilisateur, lui indiquant que l'email est incorrect. (5min)
-20 - Dans models/user/js, rajoutez et exportez la fonction verifyPassword, qui prend en entrée un mot de passe non crypté et un mot de passe crypté, et les compare : return argon2.verify(hashedPassword, plainPassword, hashingOptions). Exportez cette fonction. (5min)
+20 - Dans models/user.js, rajoutez et exportez la fonction verifyPassword, qui prend en entrée un mot de passe non crypté et un mot de passe crypté, et les compare : return argon2.verify(hashedPassword, plainPassword, hashOptions). Exportez cette fonction. (5min)
 21 - Dans le POST /api/auth/login, si l'email a été trouvé, comparez le mot de passe stocké en base avec le mot de passe du req.body. S'ils sont différents (verifyPassword renverra false), retournez à l'utilisateur un message d'erreur informant que le mot de passe est incorrect.
-22 - Si le mot de passe est correct (verifyPassword a renvoyé true), créez un jwt. Pour cela, installer jsonwebtoken et créer le fichier /helpers/users.js (vous pouvez copier/coller le fichier obtenu depuis les quêtes).
-23 - Générer le token (grace à la fonction calculateToken) et le renvoyer par cookie. Vérifiez par Postman que le cookie est bien présent sur votre ordinateur après un login réussi ! Pour tester, créez un nouveau utilisateur avec un mot de passe différent et vérifiez que le token stocké dans le cookie change bien quand vous changez d'utilisateur via la route login.
+22 - Si le mot de passe est correct (verifyPassword a renvoyé true), créez un jwt. Pour cela, installer jsonwebtoken et créer le fichier /helpers/users.js (vous pouvez copier/coller le fichier obtenu depuis les quêtes). (1min)
+23 - Générer le token (grace à la fonction calculateToken) et le renvoyer par cookie. Vérifiez par Postman que le cookie est bien présent sur votre ordinateur après un login réussi ! Pour tester, créez un nouveau utilisateur avec un mot de passe différent et vérifiez que le token stocké dans le cookie change bien quand vous changez d'utilisateur via la route login. (10min)
 24 - Stocker dans le token l'id utilisateur. Tester grace à jwt.io que le token contient bien cette valeur
 25 - Quand l'utilisateur demande une fonction restricted, aller lire le cookie. Décrypter le token grace à un middleware et s'en servir pour récupérer l'id utiisateur et le stocker dans req.
-26 - Rajouter un middleware
+26 - Rajouter un middleware dans
