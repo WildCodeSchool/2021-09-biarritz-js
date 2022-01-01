@@ -1,0 +1,83 @@
+:root {
+  --primay: black;
+  --bg-primay: white;
+
+  --link: #2a0b0b;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
+.address {
+  box-shadow: 5px 5px black;
+  padding: 5px;
+  margin: 30px;
+}
+
+li {
+  list-style: none;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  text-decoration: none;
+  padding-top: 10px;
+  background-color: lightgray;
+  padding-bottom: 20px;
+}
+
+nav > a,
+.logout {
+  text-decoration: none;
+  font-size: 15px;
+  box-shadow: 5px 5px black;
+  padding: 5px;
+  cursor: pointer;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+.active {
+  color: green;
+}
+
+.body {
+  margin: 20px 0 10px;
+  font-size: 0.9rem;
+}
+
+form {
+  width: 70%;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+form > input {
+  margin-bottom: 20px;
+  font-size: 14px;
+  border-radius: 10px;
+  text-align: center;
+  padding: 5px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+form > span {
+  color: red;
+}
+
+.home {
+  font-size: 16px;
+  margin-top: 30px;
+}
+
+.home > ul > li {
+  display: block;
+  padding: 5px;
+}
