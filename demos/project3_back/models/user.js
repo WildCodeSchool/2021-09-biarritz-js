@@ -133,7 +133,7 @@ exports.userExists = userExists;
 var getAllUsers = function () {
     return db_config_1.default
         .promise()
-        .query('SELECT * FROM users')
+        .query("SELECT users.*, id_user AS id FROM users")
         .then(function (_a) {
         var results = _a[0];
         return results;

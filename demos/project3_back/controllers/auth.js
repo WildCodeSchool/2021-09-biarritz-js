@@ -77,7 +77,11 @@ authRouter.post('/', function (req, res, next) {
                         if (passwordIsCorrect) {
                             token = auth_1.calculateToken(email_1, Number(user.id_user), user.admin);
                             res.cookie('user_token', token);
-                            res.send();
+                            res.json({
+                                id: user.id_user,
+                                firstname: user.firstname,
+                                admin: user.admin,
+                            });
                         }
                         else
                             throw new errors_1.ErrorHandler(401, 'Invalid Credentials');

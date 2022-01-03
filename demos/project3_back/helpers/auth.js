@@ -19,12 +19,14 @@ var getCurrentSession = function (req, res, next) {
     if (!myCookie.user_token) {
         next(new errors_1.ErrorHandler(401, 'Unauthorized user, please login'));
     }
-    req.userInfo = jsonwebtoken_1.default.verify(myCookie.user_token, process.env.PRIVATE_KEY);
-    if (req.userInfo === undefined) {
-        next(new errors_1.ErrorHandler(401, 'Unauthorized user, please login'));
-    }
     else {
-        next();
+        req.userInfo = jsonwebtoken_1.default.verify(myCookie.user_token, process.env.PRIVATE_KEY);
+        if (req.userInfo === undefined) {
+            next(new errors_1.ErrorHandler(401, 'Unauthorized user, please login'));
+        }
+        else {
+            next();
+        }
     }
 };
 exports.getCurrentSession = getCurrentSession;

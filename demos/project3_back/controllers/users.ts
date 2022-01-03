@@ -11,7 +11,13 @@ const usersRouter = Router();
 ///////////// USERS ///////////////
 usersRouter.get('/', (req: Request, res: Response, next: NextFunction) => {
   User.getAllUsers()
-    .then((users: Array<IUser>) => res.status(200).json(users))
+    .then((users: IUser[]) => {
+      res.setHeader(
+        'Content-Range',
+        `users 0-${users.length}/${users.length + 1}`
+      );
+      res.status(200).json(users);
+    })
     .catch((err) => next(err));
 });
 
@@ -90,9 +96,7 @@ usersRouter.get(
     try {
       const { idUser } = req.params;
 
-      const addresses: Array<IAddress> = await Address.getByUser(
-        Number(idUser)
-      );
+      const addresses: IAddress[] = await Address.getByUser(Number(idUser));
       res.status(200).json(addresses);
     } catch (err) {
       next(err);

@@ -19,15 +19,16 @@ const getCurrentSession = (req: Request, res: Response, next: NextFunction) => {
   const myCookie = req.cookies as ICookie;
   if (!myCookie.user_token) {
     next(new ErrorHandler(401, 'Unauthorized user, please login'));
-  }
-  req.userInfo = jwt.verify(
-    myCookie.user_token,
-    process.env.PRIVATE_KEY as string
-  ) as IUserInfo;
-  if (req.userInfo === undefined) {
-    next(new ErrorHandler(401, 'Unauthorized user, please login'));
   } else {
-    next();
+    req.userInfo = jwt.verify(
+      myCookie.user_token,
+      process.env.PRIVATE_KEY as string
+    ) as IUserInfo;
+    if (req.userInfo === undefined) {
+      next(new ErrorHandler(401, 'Unauthorized user, please login'));
+    } else {
+      next();
+    }
   }
 };
 

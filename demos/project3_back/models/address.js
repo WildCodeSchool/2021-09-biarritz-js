@@ -86,7 +86,7 @@ exports.addressExists = addressExists;
 var getAllAddresses = function () {
     return db_config_js_1.default
         .promise()
-        .query('SELECT * FROM addresses')
+        .query('SELECT *, id_address as id FROM addresses')
         .then(function (_a) {
         var results = _a[0];
         return results;

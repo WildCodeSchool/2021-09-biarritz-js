@@ -41,7 +41,7 @@ const addressExists = async (
 const getAllAddresses = (): Promise<IAddress[]> => {
   return connection
     .promise()
-    .query<IAddress[]>('SELECT * FROM addresses')
+    .query<IAddress[]>('SELECT *, id_address as id FROM addresses')
     .then(([results]) => results);
 };
 

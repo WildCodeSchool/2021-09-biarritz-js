@@ -90,7 +90,7 @@ const userExists = (req: Request, res: Response, next: NextFunction) => {
 const getAllUsers = (): Promise<IUser[]> => {
   return connection
     .promise()
-    .query<IUser[]>('SELECT * FROM users')
+    .query<IUser[]>(`SELECT users.*, id_user AS id FROM users`)
     .then(([results]) => results);
 };
 

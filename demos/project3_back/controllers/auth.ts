@@ -24,7 +24,11 @@ authRouter.post('/', (req: Request, res: Response, next: NextFunction) => {
               user.admin
             );
             res.cookie('user_token', token);
-            res.send();
+            res.json({
+              id: user.id_user,
+              firstname: user.firstname,
+              admin: user.admin,
+            });
           } else throw new ErrorHandler(401, 'Invalid Credentials');
         }
       })

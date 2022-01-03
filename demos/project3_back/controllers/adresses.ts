@@ -14,7 +14,13 @@ const addressesRouter = Router();
 ///////////// ADDRESS ///////////
 addressesRouter.get('/', (req: Request, res: Response, next: NextFunction) => {
   getAllAddresses()
-    .then((addresses: Array<IAddress>) => res.status(200).json(addresses))
+    .then((addresses: IAddress[]) => {
+      res.setHeader(
+        'Content-Range',
+        `addresses 0-${addresses.length}/${addresses.length + 1}`
+      );
+      res.status(200).json(addresses);
+    })
     .catch((err) => next(err));
 });
 
@@ -31,7 +37,7 @@ addressesRouter.delete(
       } else {
         throw new ErrorHandler(409, `Address not found`);
       }
-    } catch (err) {
+    } catch (err: any) {
       next(err);
     }
   }
@@ -42,9 +48,7 @@ addressesRouter.post(
   getCurrentSession,
   validateAddress,
   (req: Request, res: Response, next: NextFunction) => {
-    getAllAddresses()
-      .then((addresses: Array<IAddress>) => res.status(200).json(addresses))
-      .catch((err) => next(err));
+    // Faire le post
   }
 );
 

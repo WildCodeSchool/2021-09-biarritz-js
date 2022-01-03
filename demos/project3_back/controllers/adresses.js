@@ -44,7 +44,10 @@ var addressesRouter = express_1.Router();
 ///////////// ADDRESS ///////////
 addressesRouter.get('/', function (req, res, next) {
     address_1.getAllAddresses()
-        .then(function (addresses) { return res.status(200).json(addresses); })
+        .then(function (addresses) {
+        res.setHeader('Content-Range', "addresses 0-" + addresses.length + "/" + (addresses.length + 1));
+        res.status(200).json(addresses);
+    })
         .catch(function (err) { return next(err); });
 });
 addressesRouter.delete('/:idAddress', auth_1.getCurrentSession, auth_1.checkSessionPrivileges, function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
@@ -73,9 +76,7 @@ addressesRouter.delete('/:idAddress', auth_1.getCurrentSession, auth_1.checkSess
     });
 }); });
 addressesRouter.post('/', auth_1.getCurrentSession, address_1.validateAddress, function (req, res, next) {
-    address_1.getAllAddresses()
-        .then(function (addresses) { return res.status(200).json(addresses); })
-        .catch(function (err) { return next(err); });
+    // Faire le post
 });
 addressesRouter.put('/:idAddress', auth_1.getCurrentSession, address_1.validateAddress, address_1.addressExists, function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
     var idAddress, addressUpdated, err_2;

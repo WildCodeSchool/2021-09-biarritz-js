@@ -64,7 +64,10 @@ var usersRouter = express_1.Router();
 ///////////// USERS ///////////////
 usersRouter.get('/', function (req, res, next) {
     User.getAllUsers()
-        .then(function (users) { return res.status(200).json(users); })
+        .then(function (users) {
+        res.setHeader('Content-Range', "users 0-" + users.length + "/" + (users.length + 1));
+        res.status(200).json(users);
+    })
         .catch(function (err) { return next(err); });
 });
 usersRouter.get('/:iduser', function (req, res, next) {
