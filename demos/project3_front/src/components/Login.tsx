@@ -36,7 +36,7 @@ const Login = () => {
         setErrorMessage('');
         setId(data.id);
         setFirstname(data.firstname);
-        setAdmin(data.admin);
+        setAdmin(data.admin === 1);
         redirectHome();
       })
       .catch((err) => {
