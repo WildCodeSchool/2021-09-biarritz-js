@@ -36,6 +36,9 @@ nav > a,
   box-shadow: 5px 5px black;
   padding: 5px;
   cursor: pointer;
+  border: 0;
+  background-color: white;
+  color: black;
 }
 
 main {

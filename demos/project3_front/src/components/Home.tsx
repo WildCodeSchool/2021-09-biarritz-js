@@ -7,9 +7,9 @@ const Home = () => {
 
   return (
     <div className="home">
-      {firstname && <h2>Welcome, {firstname}</h2>}
+      {firstname && <h2>Bienvenue, {firstname}</h2>}
       <p>Ce projet front doit être exécuté en parallèle du projet back et admin.</p>
-      Il vous permettra d&apos;avoir un modèle d&apos;inspiration pour tous ces sujets :
+      Il vous permettra d&apos;avoir un modèle d&apos;exemple pour tous ces sujets :
       <ul>
         <li>React</li>
         <li>Context</li>

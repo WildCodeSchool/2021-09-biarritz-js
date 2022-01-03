@@ -21,11 +21,7 @@ function App() {
           <NavLink end to="/address">
             Adresses
           </NavLink>
-          {admin && (
-            <>
-              <a href="http://localhost:3001/">Admin panel</a>
-            </>
-          )}
+          {admin === true && <a href="http://localhost:3001/">Admin panel</a>}
           {id === 0 ? (
             <NavLink end to="/login">
               Se connecter

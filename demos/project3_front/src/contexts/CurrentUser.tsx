@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react';
+import { useCookies } from 'react-cookie';
 
 type UserContent = {
   id: number;
@@ -26,11 +27,13 @@ export const CurrentUserContextProvider: React.FC<Props> = ({ children }) => {
   const [id, setId] = useState<number>(0);
   const [firstname, setFirstname] = useState<string>('');
   const [admin, setAdmin] = useState<boolean>(false);
+  const removeCookie = useCookies(['user_token'])[2];
 
   const logout = (): void => {
     setId(0);
     setFirstname('');
     setAdmin(false);
+    removeCookie('user_token');
   };
 
   return (
