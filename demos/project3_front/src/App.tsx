@@ -1,12 +1,15 @@
 import './App.css';
 
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 
 import AddressList from './components/AddressList';
 import Home from './components/Home';
 import Login from './components/Login';
 import CurrentUserContext from './contexts/CurrentUser';
+
+import { CurrentTestContextProvider } from './contexts/CurrentTest';
+import TestContext from './components/TestContext';
 
 function App() {
   const { id, logout, admin } = useContext(CurrentUserContext);
@@ -21,6 +24,9 @@ function App() {
           <NavLink end to="/address">
             Adresses
           </NavLink>
+          <NavLink end to="/click">
+            Click
+          </NavLink>
           {admin === true && <a href="http://localhost:3001/">Admin panel</a>}
           {id === 0 ? (
             <NavLink end to="/login">
@@ -33,8 +39,13 @@ function App() {
           )}
         </nav>
         <main>
+          <CurrentTestContextProvider>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/click" element={<TestContext />} />
+            </Routes>
+          </CurrentTestContextProvider>
           <Routes>
-            <Route path="/" element={<Home />} />
             <Route path="/address" element={<AddressList onlyMine={id != 0} />} />
             <Route path="/login" element={<Login />} />
           </Routes>
