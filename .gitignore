@@ -28,6 +28,8 @@ workshops/react-exercices-errors/node_modules/
 workshops/react-exercices-errors/package-lock.json
 workshops/react-context/node_modules/
 workshops/react-context/package-lock.json
+workshops/signup/node_modules/
+workshops/signup/package-lock.json
 workshops/express-auth/node_modules/
 workshops/express-auth/package-lock.json
 workshops/express-auth/.env
@@ -42,6 +44,11 @@ demos/fullstack-search/back/package-lock.json
 demos/fullstack-search/back/.env
 demos/express-recap/package-lock.json
 demos/express-recap/node_modules/
+demos/project3_back/node_modules/
+demos/project3_back/**/*.js
+!demos/project3_back/db-config.js
+demos/project3_back/.env
+demos/project3_back/package_lock.json
 checkpoints/checkpoint-1/node_modules/
 checkpoints/checkpoint-1/package-lock.json
 checkpoints/checkpoint-2/node_modules/
