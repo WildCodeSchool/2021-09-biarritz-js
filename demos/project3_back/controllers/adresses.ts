@@ -37,7 +37,7 @@ addressesRouter.delete(
       } else {
         throw new ErrorHandler(409, `Address not found`);
       }
-    } catch (err: any) {
+    } catch (err) {
       next(err);
     }
   }
@@ -47,7 +47,7 @@ addressesRouter.post(
   '/',
   getCurrentSession,
   validateAddress,
-  (req: Request, res: Response, next: NextFunction) => {
+  (_req: Request, _res: Response, _next: NextFunction) => {
     // Faire le post
   }
 );

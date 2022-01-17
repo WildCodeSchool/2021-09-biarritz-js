@@ -11,7 +11,7 @@ type UserContent = {
   logout: () => void;
 };
 
-type Props = { children: Element };
+type Props = { children: React.ReactNode };
 
 const CurrentUserContext = createContext<UserContent>({
   id: 0,

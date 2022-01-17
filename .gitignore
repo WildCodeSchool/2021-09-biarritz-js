@@ -49,9 +49,15 @@ demos/project3_back/**/*.js
 !demos/project3_back/db-config.js
 demos/project3_back/.env
 demos/project3_back/package_lock.json
+demos/project3_front/node_modules/
+demos/project3_front/package_lock.json
+demos/project3_admin/node_modules/
+demos/project3_admin/package_lock.json
 checkpoints/checkpoint-1/node_modules/
 checkpoints/checkpoint-1/package-lock.json
 checkpoints/checkpoint-2/node_modules/
 checkpoints/checkpoint-2/package-lock.json
 checkpoints/checkpoint-3/node_modules/
 checkpoints/checkpoint-3/package-lock.json
+checkpoints/checkpoint-3-blanc/node_modules/
+checkpoints/checkpoint-3-blanc/package-lock.json
