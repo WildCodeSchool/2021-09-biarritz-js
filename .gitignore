@@ -53,6 +53,10 @@ demos/project3_front/node_modules/
 demos/project3_front/package-lock.json
 demos/project3_admin/node_modules/
 demos/project3_admin/package-lock.json
+demos/sockets/node_modules/
+demos/sockets/package-lock.json
+demos/sockets/server/package-lock.json
+demos/sockets/server/node_modules/
 checkpoints/checkpoint-1/node_modules/
 checkpoints/checkpoint-1/package-lock.json
 checkpoints/checkpoint-2/node_modules/
