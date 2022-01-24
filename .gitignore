@@ -46,7 +46,7 @@ demos/express-recap/package-lock.json
 demos/express-recap/node_modules/
 demos/project3_back/node_modules/
 demos/project3_back/**/*.js
-!demos/project3_back/db-config.js
+demos/project3_back/*.js
 demos/project3_back/.env
 demos/project3_back/package-lock.json
 demos/project3_front/node_modules/
