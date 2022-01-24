@@ -97,7 +97,10 @@ const getAllUsers = (): Promise<IUser[]> => {
 const getById = (idUser: number): Promise<IUser> => {
   return connection
     .promise()
-    .query<IUser[]>('SELECT * FROM users WHERE id_user = ?', [idUser])
+    .query<IUser[]>(
+      'SELECT users.*, id_user AS id FROM users WHERE id_user = ?',
+      [idUser]
+    )
     .then(([results]) => results[0]);
 };
 
@@ -123,7 +126,7 @@ const updateUser = async (idUser: number, user: IUser): Promise<boolean> => {
   let sql = 'UPDATE users SET ';
   const sqlValues: Array<string | number | boolean> = [];
   let oneValue = false;
-
+  console.log(user);
   if (user.firstname) {
     sql += 'firstname = ? ';
     sqlValues.push(user.firstname);
@@ -145,7 +148,7 @@ const updateUser = async (idUser: number, user: IUser): Promise<boolean> => {
     sqlValues.push(hashedPassword);
     oneValue = true;
   }
-  if (user.admin) {
+  if (user.admin != undefined) {
     sql += oneValue ? ', admin = ? ' : ' admin = ? ';
     sqlValues.push(user.admin);
     oneValue = true;

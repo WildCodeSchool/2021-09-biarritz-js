@@ -8,7 +8,7 @@ const authRouter = Router();
 
 authRouter.post('/', (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { email, password } = req.body as IUser;
+    const { email, password } = req.body;
     User.getByEmail(email)
       .then(async (user) => {
         if (!user) throw new ErrorHandler(401, 'This user does not exist');

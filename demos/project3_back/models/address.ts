@@ -48,9 +48,10 @@ const getAllAddresses = (): Promise<IAddress[]> => {
 const getById = (idAddress: number): Promise<IAddress> => {
   return connection
     .promise()
-    .query<IAddress[]>('SELECT * FROM addresses WHERE id_address = ?', [
-      idAddress,
-    ])
+    .query<IAddress[]>(
+      'SELECT *, id_address as id FROM addresses WHERE id_address = ?',
+      [idAddress]
+    )
     .then(([results]) => results[0]);
 };
 

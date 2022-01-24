@@ -49,12 +49,11 @@ usersRouter.post(
 
 usersRouter.put(
   '/:idUser',
-  Auth.getCurrentSession,
+  // Auth.getCurrentSession,
   User.validateUser,
   User.userExists,
   async (req: Request, res: Response) => {
     const { idUser } = req.params;
-
     const userUpdated = await User.updateUser(
       Number(idUser),
       req.body as IUser
@@ -69,7 +68,7 @@ usersRouter.put(
 
 usersRouter.delete(
   '/:idUser',
-  Auth.getCurrentSession,
+  //  Auth.getCurrentSession,
   Auth.checkSessionPrivileges,
   User.userExists,
   async (req: Request, res: Response, next: NextFunction) => {
