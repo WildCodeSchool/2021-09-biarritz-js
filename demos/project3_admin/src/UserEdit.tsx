@@ -9,12 +9,11 @@ import {
 const UserEdit = (props: ListProps) => (
   <Edit {...props}>
     <SimpleForm>
-      <NumberInput source="id_user" />
+      <NumberInput source="id_user" disabled />
       <TextInput source="firstname" />
       <TextInput source="lastname" />
       <TextInput source="email" />
       <NumberInput source="admin" />
-      <TextInput source="id" />
     </SimpleForm>
   </Edit>
 );

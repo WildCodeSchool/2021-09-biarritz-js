@@ -6,5 +6,5 @@ export default interface IUser extends RowDataPacket {
   lastname: string;
   email: string;
   password: string;
-  admin: boolean;
+  admin: number;
 }

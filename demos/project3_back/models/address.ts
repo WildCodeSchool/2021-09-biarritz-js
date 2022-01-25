@@ -118,7 +118,7 @@ const updateAddress = (
 const deleteAddress = async (idAddress: number): Promise<boolean> => {
   return connection
     .promise()
-    .query<ResultSetHeader>('DELETE FROM addresses WHERE id_addresses = ?', [
+    .query<ResultSetHeader>('DELETE FROM addresses WHERE id_address = ?', [
       idAddress,
     ])
     .then(([results]) => results.affectedRows === 1);

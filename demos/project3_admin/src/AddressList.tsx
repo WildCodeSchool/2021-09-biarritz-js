@@ -6,10 +6,10 @@ import {
   TextField,
 } from 'react-admin';
 
-export const AddressList = (props: ListProps) => (
+const AddressList = (props: ListProps) => (
   <List {...props}>
     <Datagrid rowClick="edit">
-      <TextField source="id" sortBy="id" />
+      <TextField source="id_address" sortBy="addresses.id_address" />
       <TextField source="address1" />
       <TextField source="address2" />
       <TextField source="city" />
@@ -22,3 +22,5 @@ export const AddressList = (props: ListProps) => (
     </Datagrid>
   </List>
 );
+
+export default AddressList;

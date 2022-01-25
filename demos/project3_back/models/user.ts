@@ -34,7 +34,7 @@ const validateUser = (req: Request, res: Response, next: NextFunction) => {
     lastname: Joi.string().max(100).presence(required),
     email: Joi.string().email().max(255).presence(required),
     password: Joi.string().min(8).max(15).presence(required),
-    admin: Joi.boolean().optional(),
+    admin: Joi.number().min(0).max(1).optional(),
   }).validate(req.body, { abortEarly: false }).error;
   if (errors) {
     next(new ErrorHandler(422, errors.message));

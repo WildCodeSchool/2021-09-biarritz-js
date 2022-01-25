@@ -17,7 +17,7 @@ type recordType = {
   id?: Identifier | undefined;
 };
 
-export const UserList = (props: ListProps) => {
+const UserList = (props: ListProps) => {
   return (
     <List {...props}>
       <Datagrid rowClick="edit">
@@ -30,3 +30,5 @@ export const UserList = (props: ListProps) => {
     </List>
   );
 };
+
+export default UserList;

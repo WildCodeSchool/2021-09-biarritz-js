@@ -28,6 +28,7 @@ authRouter.post('/', (req: Request, res: Response, next: NextFunction) => {
               id: user.id_user,
               firstname: user.firstname,
               admin: user.admin,
+              token: token,
             });
           } else throw new ErrorHandler(401, 'Invalid Credentials');
         }

@@ -55,6 +55,7 @@ addressesRouter.post(
 addressesRouter.put(
   '/:idAddress',
   getCurrentSession,
+  checkSessionPrivileges,
   validateAddress,
   addressExists,
   async (req: Request, res: Response, next: NextFunction) => {

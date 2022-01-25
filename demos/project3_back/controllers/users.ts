@@ -49,7 +49,8 @@ usersRouter.post(
 
 usersRouter.put(
   '/:idUser',
-  // Auth.getCurrentSession,
+  Auth.getCurrentSession,
+  Auth.checkSessionPrivileges,
   User.validateUser,
   User.userExists,
   async (req: Request, res: Response) => {
@@ -68,7 +69,7 @@ usersRouter.put(
 
 usersRouter.delete(
   '/:idUser',
-  //  Auth.getCurrentSession,
+  Auth.getCurrentSession,
   Auth.checkSessionPrivileges,
   User.userExists,
   async (req: Request, res: Response, next: NextFunction) => {

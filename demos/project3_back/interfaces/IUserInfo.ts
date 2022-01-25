@@ -1,5 +1,5 @@
 export default interface IUserInfo {
   id: number;
   email: string;
-  admin: boolean;
+  admin: number;
 }

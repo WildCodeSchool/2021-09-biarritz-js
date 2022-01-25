@@ -63,17 +63,13 @@ const authProvider: AuthProvider = {
   },
   getIdentity: () => {
     try {
-      if (1 === 1) {
-        const userInfo: IUserInfo = JSON.parse(
-          localStorage.getItem('auth') || ''
-        );
-        const id: string = userInfo.id || '0';
-        const firstname: string = userInfo.firstname || '';
-        const avatar: string = '';
-        return Promise.resolve({ id, fullName: firstname, avatar });
-      } else {
-        return Promise.reject();
-      }
+      const userInfo: IUserInfo = JSON.parse(
+        localStorage.getItem('auth') || ''
+      );
+      const id: string = userInfo.id || '0';
+      const firstname: string = userInfo.firstname || '';
+      const avatar: string = '';
+      return Promise.resolve({ id, fullName: firstname, avatar });
     } catch (error) {
       return Promise.reject(error);
     }

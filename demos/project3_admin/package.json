@@ -7,6 +7,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^0.25.0",
     "prop-types": "^15.8.1",
     "ra-data-json-server": "^3.19.6",
     "ra-data-simple-rest": "^3.19.6",
