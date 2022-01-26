@@ -9,7 +9,8 @@ import {
 const AddressList = (props: ListProps) => (
   <List {...props}>
     <Datagrid rowClick="edit">
-      <TextField source="id_address" sortBy="addresses.id_address" />
+      <TextField source="id_address" />
+      {/*  sortBy="addresses.id_address" /> */}
       <TextField source="address1" />
       <TextField source="address2" />
       <TextField source="city" />

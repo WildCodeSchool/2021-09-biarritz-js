@@ -5,12 +5,14 @@ import * as Auth from '../helpers/auth';
 import IUser from '../interfaces/IUser';
 import IAddress from '../interfaces/IAddress';
 import { ErrorHandler } from '../helpers/errors';
+import { formatSortString } from '../helpers/functions';
 
 const usersRouter = Router();
 
 ///////////// USERS ///////////////
 usersRouter.get('/', (req: Request, res: Response, next: NextFunction) => {
-  User.getAllUsers()
+  const sortBy: string = req.query.sort as string;
+  User.getAllUsers(formatSortString(sortBy))
     .then((users: IUser[]) => {
       res.setHeader(
         'Content-Range',

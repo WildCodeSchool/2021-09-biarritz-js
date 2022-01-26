@@ -9,11 +9,13 @@ import {
 import IAddress from '../interfaces/IAddress';
 import { ErrorHandler } from '../helpers/errors';
 import { getCurrentSession, checkSessionPrivileges } from '../helpers/auth';
+import { formatSortString } from '../helpers/functions';
 
 const addressesRouter = Router();
 ///////////// ADDRESS ///////////
 addressesRouter.get('/', (req: Request, res: Response, next: NextFunction) => {
-  getAllAddresses()
+  const sortBy: string = req.query.sort as string;
+  getAllAddresses(formatSortString(sortBy))
     .then((addresses: IAddress[]) => {
       res.setHeader(
         'Content-Range',

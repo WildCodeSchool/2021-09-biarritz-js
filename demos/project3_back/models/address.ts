@@ -38,10 +38,14 @@ const addressExists = async (
   }
 };
 
-const getAllAddresses = (): Promise<IAddress[]> => {
+const getAllAddresses = (sortBy: string = ''): Promise<IAddress[]> => {
+  let sql: string = 'SELECT *, id_address as id FROM addresses';
+  if (sortBy) {
+    sql += ` ORDER BY ${sortBy}`;
+  }
   return connection
     .promise()
-    .query<IAddress[]>('SELECT *, id_address as id FROM addresses')
+    .query<IAddress[]>(sql)
     .then(([results]) => results);
 };
 

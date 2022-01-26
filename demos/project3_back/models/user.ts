@@ -87,10 +87,14 @@ const userExists = (req: Request, res: Response, next: NextFunction) => {
     .catch((err) => next(err));
 };
 
-const getAllUsers = (): Promise<IUser[]> => {
+const getAllUsers = (sortBy: string = ''): Promise<IUser[]> => {
+  let sql: string = `SELECT users.*, id_user AS id FROM users`;
+  if (sortBy) {
+    sql += ` ORDER BY ${sortBy}`;
+  }
   return connection
     .promise()
-    .query<IUser[]>(`SELECT users.*, id_user AS id FROM users`)
+    .query<IUser[]>(sql)
     .then(([results]) => results);
 };
 
