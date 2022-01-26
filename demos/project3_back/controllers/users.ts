@@ -24,10 +24,10 @@ usersRouter.get('/', (req: Request, res: Response, next: NextFunction) => {
 });
 
 usersRouter.get(
-  '/:iduser',
+  '/:idUser',
   (req: Request, res: Response, next: NextFunction) => {
-    const { iduser } = req.params;
-    User.getById(Number(iduser))
+    const { idUser } = req.params;
+    User.getById(Number(idUser))
       .then((users: IUser) => res.status(200).json(users))
       .catch((err) => next(err));
   }
@@ -62,7 +62,7 @@ usersRouter.put(
       req.body as IUser
     );
     if (userUpdated) {
-      res.status(200).send('User updated');
+      res.status(200).send(req.record); // react-admin needs this response
     } else {
       throw new ErrorHandler(500, `User cannot be updated`);
     }
@@ -77,9 +77,10 @@ usersRouter.delete(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { idUser } = req.params;
+      const user = await User.getById(Number(idUser));
       const userDeleted = await User.deleteUser(Number(idUser));
       if (userDeleted) {
-        res.status(200).send('User deleted');
+        res.status(200).send(user); // react-admin needs this response
       } else {
         throw new ErrorHandler(500, `This user cannot be deleted`);
       }

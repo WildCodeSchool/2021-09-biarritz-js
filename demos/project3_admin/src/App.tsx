@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Admin, Resource, fetchUtils } from 'react-admin';
+import { Admin, Resource, fetchUtils, EditGuesser } from 'react-admin';
 import simpleRestProvider from 'ra-data-simple-rest';
 import UserList from './UserList';
 import UserEdit from './UserEdit';
@@ -22,7 +22,7 @@ const dataProvider = simpleRestProvider(
 const App = () => (
   <Admin authProvider={authProvider} dataProvider={dataProvider}>
     <Resource name="users" list={UserList} edit={UserEdit} />
-    <Resource name="addresses" list={AddressList} />
+    <Resource name="addresses" list={AddressList} edit={EditGuesser} />
   </Admin>
 );
 

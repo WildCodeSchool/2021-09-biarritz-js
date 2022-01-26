@@ -34,6 +34,7 @@ const addressExists = async (
   if (!addressExists) {
     next(new ErrorHandler(409, `This address does not exist`));
   } else {
+    req.record = addressExists; // because we need deleted record to be sent after a delete in react-admin
     next();
   }
 };

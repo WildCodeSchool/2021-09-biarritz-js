@@ -5,6 +5,7 @@ import {
   updateAddress,
   validateAddress,
   addressExists,
+  getById,
 } from '../models/address';
 import IAddress from '../interfaces/IAddress';
 import { ErrorHandler } from '../helpers/errors';
@@ -26,16 +27,29 @@ addressesRouter.get('/', (req: Request, res: Response, next: NextFunction) => {
     .catch((err) => next(err));
 });
 
+addressesRouter.get(
+  '/:idAddress',
+  (req: Request, res: Response, next: NextFunction) => {
+    const { idAddress } = req.params;
+    getById(Number(idAddress))
+      .then((address: IAddress) => {
+        res.status(200).json(address);
+      })
+      .catch((err) => next(err));
+  }
+);
+
 addressesRouter.delete(
   '/:idAddress',
   getCurrentSession,
   checkSessionPrivileges,
+  addressExists,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { idAddress } = req.params;
       const addressDeleted = await deleteAddress(Number(idAddress));
       if (addressDeleted) {
-        res.status(200).send('Address deleted');
+        res.status(200).send(req.record); // react-admin needs this response
       } else {
         throw new ErrorHandler(409, `Address not found`);
       }
@@ -68,7 +82,8 @@ addressesRouter.put(
         req.body as IAddress
       );
       if (addressUpdated) {
-        res.status(200).send('Address updated');
+        const address = await getById(Number(idAddress));
+        res.status(200).send(address); // react-admin needs this response
       } else {
         throw new ErrorHandler(500, `Address cannot be updated`);
       }

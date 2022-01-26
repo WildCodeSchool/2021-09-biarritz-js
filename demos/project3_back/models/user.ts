@@ -35,6 +35,8 @@ const validateUser = (req: Request, res: Response, next: NextFunction) => {
     email: Joi.string().email().max(255).presence(required),
     password: Joi.string().min(8).max(15).presence(required),
     admin: Joi.number().min(0).max(1).optional(),
+    id: Joi.number().optional(),
+    id_user: Joi.number().optional(),
   }).validate(req.body, { abortEarly: false }).error;
   if (errors) {
     next(new ErrorHandler(422, errors.message));
@@ -81,6 +83,7 @@ const userExists = (req: Request, res: Response, next: NextFunction) => {
       }
       // Si oui => next
       else {
+        req.record = userExists; // because we need deleted record to be sent after a delete in react-admin
         next();
       }
     })
@@ -88,7 +91,7 @@ const userExists = (req: Request, res: Response, next: NextFunction) => {
 };
 
 const getAllUsers = (sortBy: string = ''): Promise<IUser[]> => {
-  let sql: string = `SELECT users.*, id_user AS id FROM users`;
+  let sql: string = `SELECT id_user, firstname, lastname, email, admin, id_user AS id FROM users`;
   if (sortBy) {
     sql += ` ORDER BY ${sortBy}`;
   }
@@ -102,7 +105,7 @@ const getById = (idUser: number): Promise<IUser> => {
   return connection
     .promise()
     .query<IUser[]>(
-      'SELECT users.*, id_user AS id FROM users WHERE id_user = ?',
+      'SELECT id_user, firstname, lastname, email, admin, id_user AS id FROM users WHERE id_user = ?',
       [idUser]
     )
     .then(([results]) => results[0]);
@@ -111,7 +114,9 @@ const getById = (idUser: number): Promise<IUser> => {
 const getByEmail = (email: string): Promise<IUser> => {
   return connection
     .promise()
-    .query<IUser[]>('SELECT * FROM users WHERE email = ?', [email])
+    .query<IUser[]>('SELECT email, password FROM users WHERE email = ?', [
+      email,
+    ])
     .then(([results]) => results[0]);
 };
 
