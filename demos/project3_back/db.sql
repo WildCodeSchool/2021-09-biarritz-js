@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `Project3`.`users` (
   `password` VARCHAR(255) NOT NULL,
   `admin` TINYINT(1) NULL DEFAULT 0,
   PRIMARY KEY (`id_user`))
-ENGINE = InnoDB
+ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `Project3`.`addresses` (
   `id_address` INT NOT NULL AUTO_INCREMENT,
@@ -27,11 +27,11 @@ CREATE TABLE IF NOT EXISTS `Project3`.`addresses` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-INSERT INTO users (firstname, lastname, email) 
-VALUES('Lydie', 'Pluvinage','lydie.pluvinage@wildcodeschool.com'),
-('Joseph', 'Mayoral', 'joseph.mayoral@wildcodeschool.com'),
-('Camille', 'Sabatier', 'camille.sabatier@wildcodeschool.com'),
-('Kaïko', 'Pluvinage', 'nonos@woof.fr');
+INSERT INTO users (firstname, lastname, email, admin, password) 
+VALUES('Lydie', 'Pluvinage','lydie.pluvinage@wildcodeschool.com',1, "$argon2id$v=19$m=65536,t=5,p=1$KLNhy8gcHqN0nDym48Eb5A$z3LKPSRROAsoMacPYuZ+/4cxOktoscgWBHvrtpBs0x4"),
+('Joseph', 'Mayoral', 'joseph.mayoral@wildcodeschool.com',1,"$argon2id$v=19$m=65536,t=5,p=1$KLNhy8gcHqN0nDym48Eb5A$z3LKPSRROAsoMacPYuZ+/4cxOktoscgWBHvrtpBs0x4"),
+('Camille', 'Sabatier', 'camille.sabatier@wildcodeschool.com',0,"$argon2id$v=19$m=65536,t=5,p=1$KLNhy8gcHqN0nDym48Eb5A$z3LKPSRROAsoMacPYuZ+/4cxOktoscgWBHvrtpBs0x4"),
+('Kaïko', 'Pluvinage', 'nonos@woof.fr',0,"$argon2id$v=19$m=65536,t=5,p=1$KLNhy8gcHqN0nDym48Eb5A$z3LKPSRROAsoMacPYuZ+/4cxOktoscgWBHvrtpBs0x4");
 
 INSERT INTO addresses (postal_code, city, address1, address2, id_user)
 VALUES('64100', 'Bayonne', 'Sur la place', null, 1),

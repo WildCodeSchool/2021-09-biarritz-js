@@ -13,16 +13,19 @@ authRouter.post('/', (req: Request, res: Response, next: NextFunction) => {
       .then(async (user) => {
         if (!user) throw new ErrorHandler(401, 'This user does not exist');
         else {
+          
           const passwordIsCorrect: boolean = await User.verifyPassword(
             password,
             user.password
           );
           if (passwordIsCorrect) {
+            
             const token = calculateToken(
               email,
               Number(user.id_user),
               user.admin
             );
+            
             res.cookie('user_token', token);
             res.json({
               id: user.id_user,

@@ -16,7 +16,7 @@ usersRouter.get('/', (req: Request, res: Response, next: NextFunction) => {
     .then((users: IUser[]) => {
       res.setHeader(
         'Content-Range',
-        `users 0-${users.length}/${users.length + 1}`
+        `users : 0-${users.length}/${users.length + 1}`
       );
       res.status(200).json(users);
     })
@@ -35,7 +35,7 @@ usersRouter.get(
 
 usersRouter.post(
   '/',
-  Auth.getCurrentSession,
+   Auth.getCurrentSession,
   User.validateUser,
   User.emailIsFree,
   async (req: Request, res: Response, next: NextFunction) => {

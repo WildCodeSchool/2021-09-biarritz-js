@@ -16,6 +16,10 @@ const validateAddress = (req: Request, res: Response, next: NextFunction) => {
     city: Joi.string().max(200).presence(required),
     postalCode: Joi.string().max(10).presence(required),
     idUser: Joi.number().positive().presence(required),
+    id_user: Joi.number().optional(),
+    id: Joi.number().optional(),
+    id_address: Joi.number().optional(),
+    postal_code: Joi.string().max(10).optional(),
   }).validate(req.body, { abortEarly: false }).error;
   if (errors) {
     next(new ErrorHandler(422, errors.message));
@@ -109,6 +113,11 @@ const updateAddress = (
   if (address.city) {
     sql += oneValue ? ', city = ? ' : ' city = ? ';
     sqlValues.push(address.city);
+    oneValue = true;
+  }
+  if (address.id_user) {
+    sql += oneValue ? ', id_user = ? ' : ' id_user = ? ';
+    sqlValues.push(address.id_user);
     oneValue = true;
   }
   sql += ' WHERE id_address = ?';
