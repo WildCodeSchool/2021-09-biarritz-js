@@ -5,6 +5,8 @@ import UserList from './UserList';
 import UserEdit from './UserEdit';
 import AddressList from './AddressList';
 import authProvider from './authProvider';
+import { AddressCreate } from './AddressCreate';
+import { AddressEdit } from './AddressEdit';
 
 const httpClient = (url: string, options: any = {}) => {
   if (!options.headers) {
@@ -22,7 +24,12 @@ const dataProvider = simpleRestProvider(
 const App = () => (
   <Admin authProvider={authProvider} dataProvider={dataProvider}>
     <Resource name="users" list={UserList} edit={UserEdit} />
-    <Resource name="addresses" list={AddressList} edit={EditGuesser} />
+    <Resource
+      name="addresses"
+      list={AddressList}
+      edit={AddressEdit}
+      create={AddressCreate}
+    />
   </Admin>
 );
 

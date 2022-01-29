@@ -6,6 +6,7 @@ import {
   validateAddress,
   addressExists,
   getById,
+  addAddress,
 } from '../models/address';
 import IAddress from '../interfaces/IAddress';
 import { ErrorHandler } from '../helpers/errors';
@@ -62,9 +63,21 @@ addressesRouter.delete(
 addressesRouter.post(
   '/',
   getCurrentSession,
+  checkSessionPrivileges,
   validateAddress,
-  (_req: Request, _res: Response, _next: NextFunction) => {
-    // Faire le post
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const addressId = await addAddress(req.body as IAddress);
+      if (addressId) {
+        res
+          .status(201)
+          .json({ id_address: addressId, id: addressId, ...req.body });
+      } else {
+        throw new ErrorHandler(500, `Address cannot be created`);
+      }
+    } catch (err) {
+      next(err);
+    }
   }
 );
 
@@ -72,8 +85,9 @@ addressesRouter.put(
   '/:idAddress',
   getCurrentSession,
   checkSessionPrivileges,
-  validateAddress,
+
   addressExists,
+  validateAddress,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { idAddress } = req.params;

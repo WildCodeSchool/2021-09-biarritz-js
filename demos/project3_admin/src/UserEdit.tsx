@@ -5,9 +5,10 @@ import {
   SimpleForm,
   TextInput,
 } from 'react-admin';
+import { PostEditActions } from './PostEditActions';
 
 const UserEdit = (props: ListProps) => (
-  <Edit {...props}>
+  <Edit {...props} actions={<PostEditActions />}>
     <SimpleForm>
       <NumberInput source="id_user" disabled />
       <TextInput source="firstname" />
