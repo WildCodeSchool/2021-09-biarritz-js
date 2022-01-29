@@ -114,7 +114,7 @@ const getById = (idUser: number): Promise<IUser> => {
 const getByEmail = (email: string): Promise<IUser> => {
   return connection
     .promise()
-    .query<IUser[]>('SELECT email, password FROM users WHERE email = ?', [
+    .query<IUser[]>('SELECT email, password, firstname, admin FROM users WHERE email = ?', [
       email,
     ])
     .then(([results]) => results[0]);

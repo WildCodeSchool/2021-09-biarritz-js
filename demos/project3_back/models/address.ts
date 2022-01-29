@@ -115,6 +115,11 @@ const updateAddress = (
     sqlValues.push(address.city);
     oneValue = true;
   }
+  if (address.id_user) {
+    sql += oneValue ? ', id_user = ? ' : ' id_user = ? ';
+    sqlValues.push(address.id_user);
+    oneValue = true;
+  }
   sql += ' WHERE id_address = ?';
   sqlValues.push(idAddress);
 

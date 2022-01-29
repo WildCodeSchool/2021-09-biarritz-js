@@ -21,7 +21,7 @@ addressesRouter.get('/', (req: Request, res: Response, next: NextFunction) => {
     .then((addresses: IAddress[]) => {
       res.setHeader(
         'Content-Range',
-        `addresses 0-${addresses.length}/${addresses.length + 1}`
+        `addresses : 0-${addresses.length}/${addresses.length + 1}`
       );
       res.status(200).json(addresses);
     })
